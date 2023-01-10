@@ -1,4 +1,4 @@
-﻿using SophiApp.Core.Helpers;
+﻿using SophiApp.Helpers;
 
 using Windows.Storage;
 using Windows.Storage.Streams;

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 
 using SophiApp.Contracts.Services;
-using SophiApp.Core.Contracts.Services;
-using SophiApp.Core.Helpers;
 using SophiApp.Helpers;
 using SophiApp.Models;
 

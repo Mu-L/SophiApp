@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SophiApp.Core.Helpers;
+namespace SophiApp.Helpers;
 
 public static class Json
 {

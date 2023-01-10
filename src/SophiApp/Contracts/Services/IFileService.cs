@@ -1,4 +1,4 @@
-﻿namespace SophiApp.Core.Contracts.Services;
+﻿namespace SophiApp.Contracts.Services;
 
 public interface IFileService
 {

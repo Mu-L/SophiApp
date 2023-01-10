@@ -60,7 +60,6 @@ public class SettingsViewModel : ObservableRecipient
         if (RuntimeHelper.IsMSIX)
         {
             var packageVersion = Package.Current.Id.Version;
-
             version = new(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
         }
         else

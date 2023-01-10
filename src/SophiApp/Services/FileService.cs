@@ -2,9 +2,9 @@
 
 using Newtonsoft.Json;
 
-using SophiApp.Core.Contracts.Services;
+using SophiApp.Contracts.Services;
 
-namespace SophiApp.Core.Services;
+namespace SophiApp.Services;
 
 public class FileService : IFileService
 {

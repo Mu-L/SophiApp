@@ -61,7 +61,7 @@ internal class TitleBarHelper
                 {
                     ElementTheme.Dark => new SolidColorBrush(Colors.White),
                     ElementTheme.Light => new SolidColorBrush(Colors.Black),
-                    _ => new SolidColorBrush(Colors.Transparent)
+                    _ => new SolidColorBrush(Colors.Transparent),
                 };
 
                 Application.Current.Resources["WindowCaptionButtonStrokePressed"] = theme switch
