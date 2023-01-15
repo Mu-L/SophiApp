@@ -1,10 +1,10 @@
-﻿{
-    "profiles": {
-      "SophiApp (Unpackaged)": {
-        "commandName": "Project"
-      },
-      "SophiApp (Package)": {
-        "commandName": "MsixPackage"
-      }
+{
+  "profiles": {
+    "SophiApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SophiApp (Unpackaged)": {
+      "commandName": "Project"
     }
+  }
 }

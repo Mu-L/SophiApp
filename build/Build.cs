@@ -54,9 +54,9 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            MSBuildTasks.MSBuild(configuration => configuration
-            .SetProjectFile(ProjectDirectory)
-            .SetOutDir(PublishDirectory));
+            //MSBuildTasks.MSBuild(configuration => configuration
+            //.SetProjectFile(ProjectDirectory)
+            //.SetOutDir(PublishDirectory));
 
             //DotNetTasks.DotNetPublish(configurator => configurator
             //.SetProject(ProjectDirectory)
