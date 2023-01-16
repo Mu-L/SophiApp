@@ -1,4 +1,4 @@
-namespace SophiApp
+namespace SophiApp.Views
 {
     using System;
     using System.Collections.Generic;
@@ -14,19 +14,18 @@ namespace SophiApp
     using Microsoft.UI.Xaml.Navigation;
     using Windows.Foundation;
     using Windows.Foundation.Collections;
-    using WinUIEx;
 
-    /// <inheritdoc/>
-    public sealed partial class MainWindow : WindowEx
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class PrivacyPage : Page
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// Initializes a new instance of the <see cref="PrivacyPage"/> class.
         /// </summary>
-        public MainWindow()
+        public PrivacyPage()
         {
-            InitializeComponent();
-            AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/SophiApp.ico"));
-            Content = null;
+            this.InitializeComponent();
         }
     }
 }

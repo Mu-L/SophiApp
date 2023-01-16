@@ -8,4 +8,7 @@
 	<ItemGroup Condition=" '$(UseJson)' == 'true' ">
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
 	</ItemGroup>
+	<ItemGroup Condition=" '$(UseDi)' == 'true' ">
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0"/>
+	</ItemGroup>
 </Project>
