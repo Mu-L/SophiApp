@@ -8,6 +8,7 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using SophiApp.Contracts;
+    using SophiApp.Contracts.Services;
     using SophiApp.Views;
 
     /// <inheritdoc/>
@@ -24,7 +25,7 @@
             // Set the MainWindow Content.
             if (App.MainWindow.Content == null)
             {
-                shell = App.GetService<PrivacyPage>();
+                shell = App.GetService<NavigationPage>();
                 App.MainWindow.Content = shell;
             }
 
@@ -34,6 +35,7 @@
             // Execute tasks after activation.
             await StartupAsync();
         }
+
         private async Task InitializeAsync()
         {
             await Task.CompletedTask;

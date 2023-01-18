@@ -17,6 +17,7 @@
     using Microsoft.UI.Xaml.Navigation;
     using Microsoft.UI.Xaml.Shapes;
     using SophiApp.Contracts;
+    using SophiApp.Contracts.Services;
     using SophiApp.Models;
     using SophiApp.Services;
     using SophiApp.Views;
@@ -50,7 +51,7 @@
                     services.AddSingleton<IActivationService, ActivationService>();
 
                     // Views and ViewModels
-                    services.AddTransient<PrivacyPage>();
+                    services.AddTransient<NavigationPage>();
 
                     // Configuration
                     services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
@@ -61,9 +62,9 @@
         }
 
         /// <summary>
-        /// Gets <see cref="MainWindow"/>.
+        /// Gets or sets <see cref="MainWindow"/>.
         /// </summary>
-        public static WindowEx MainWindow => new MainWindow();
+        public static WindowEx MainWindow { get; set; } = new MainWindow();
 
         // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
         // https://docs.microsoft.com/dotnet/core/extensions/generic-host
@@ -79,7 +80,6 @@
             get;
         }
 
-
         /// <summary>
         /// Get <see cref="IHost"/> service.
         /// </summary>
@@ -94,7 +94,6 @@
 
             return service;
         }
-
 
         /// <summary>
         /// Invoked when the application is launched.

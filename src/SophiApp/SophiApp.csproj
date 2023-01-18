@@ -16,12 +16,13 @@
     <UseResults>true</UseResults>
     <UseStyleCop>true</UseStyleCop>
     <UseDi>true</UseDi>
+    <UseJson>true</UseJson>
     <WindowsPackageType>None</WindowsPackageType>
     <ApplicationIcon>Assets\SophiApp.ico</ApplicationIcon>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Views\PrivacyPage.xaml" />
+    <None Remove="Views\NavigationPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,8 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageReference Include="WinUIEx" Version="2.1.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -50,7 +55,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\PrivacyPage.xaml">
+    <Page Update="Views\NavigationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

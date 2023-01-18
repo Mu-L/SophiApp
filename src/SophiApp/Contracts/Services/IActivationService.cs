@@ -1,4 +1,4 @@
-﻿namespace SophiApp.Contracts
+﻿namespace SophiApp.Contracts.Services
 {
     using System;
     using System.Collections.Generic;
