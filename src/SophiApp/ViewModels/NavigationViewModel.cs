@@ -12,6 +12,18 @@ public class NavigationViewModel : ObservableRecipient
     private object? selected;
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="NavigationViewModel"/> class.
+    /// </summary>
+    /// <param name="navigationService"><see cref="INavigationService"/>.</param>
+    /// <param name="navigationViewService"><see cref="INavigationViewService"/>.</param>
+    public NavigationViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
+    {
+        NavigationService = navigationService;
+        NavigationService.Navigated += OnNavigated;
+        NavigationViewService = navigationViewService;
+    }
+
+    /// <summary>
     /// Gets <see cref="INavigationService"/>.
     /// </summary>
     public INavigationService NavigationService
@@ -19,33 +31,30 @@ public class NavigationViewModel : ObservableRecipient
         get;
     }
 
+    /// <summary>
+    /// Gets <see cref="INavigationViewService"/>.
+    /// </summary>
     public INavigationViewService NavigationViewService
     {
         get;
     }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether get or set back property.
+    /// </summary>
     public bool IsBackEnabled
     {
         get => isBackEnabled;
         set => SetProperty(ref isBackEnabled, value);
     }
 
+    /// <summary>
+    /// Gets or sets selected value.
+    /// </summary>
     public object? Selected
     {
         get => selected;
         set => SetProperty(ref selected, value);
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="NavigationViewModel"/> class.
-    /// </summary>
-    /// <param name="navigationService"></param>
-    /// <param name="navigationViewService"></param>
-    public NavigationViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
-    {
-        NavigationService = navigationService;
-        NavigationService.Navigated += OnNavigated;
-        NavigationViewService = navigationViewService;
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e)

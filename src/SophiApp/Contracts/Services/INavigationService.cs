@@ -8,20 +8,38 @@ using Microsoft.UI.Xaml.Navigation;
 /// </summary>
 public interface INavigationService
 {
+    /// <summary>
+    /// Navigated event
+    /// </summary>
     event NavigatedEventHandler Navigated;
 
+    /// <summary>
+    /// Gets a value indicating whether gets go back.
+    /// </summary>
     bool CanGoBack
     {
         get;
     }
 
+    /// <summary>
+    /// Gets or sets <see cref="Frame"/>.
+    /// </summary>
     Frame? Frame
     {
         get; set;
     }
 
+    /// <summary>
+    /// Performs navigate to page.
+    /// </summary>
+    /// <param name="pageKey">page key.</param>
+    /// <param name="parameter">page parameter.</param>
+    /// <param name="clearNavigation">allow clean navigation history.</param>
     bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
 
+    /// <summary>
+    /// Go to back state.
+    /// </summary>
     bool GoBack();
 
     void SetListDataItemForNextConnectedAnimation(object item);

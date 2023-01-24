@@ -1,18 +1,12 @@
 ﻿namespace SophiApp.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
-    using Microsoft.UI.Xaml.Controls;
-    using SophiApp.Contracts;
     using SophiApp.Contracts.Services;
     using SophiApp.Views;
+    using System.Threading.Tasks;
 
     /// <inheritdoc/>
-    internal class ActivationService : IActivationService
+    public class ActivationService : IActivationService
     {
         private UIElement? shell = null;
 
@@ -45,6 +39,5 @@
         {
             await Task.CompletedTask;
         }
-
     }
 }

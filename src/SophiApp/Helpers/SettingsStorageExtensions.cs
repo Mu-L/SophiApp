@@ -3,7 +3,6 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using SophiApp.Helpers;
 using Windows.Storage;
 using Windows.Storage.Streams;
 

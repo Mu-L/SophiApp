@@ -2,6 +2,7 @@
 <RuleSet Name="New Rule Set" Description=" " ToolsVersion="17.0">
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1101" Action="Info" />
+    <Rule Id="SA1512" Action="Error" />
     <Rule Id="SA1602" Action="Info" />
   </Rules>
 </RuleSet>

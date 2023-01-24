@@ -25,7 +25,7 @@ public static class Json
     /// Serializes the specified object to a JSON string.
     /// </summary>
     /// <param name="value">The object to serialize.</param>
-    public static async Task<string> SerializeAsync(object value)
+    public static async Task<string> SerializeAsync(object? value)
     {
         return await Task.Run(() =>
         {
