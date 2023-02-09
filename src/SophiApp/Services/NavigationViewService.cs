@@ -1,13 +1,13 @@
 ﻿namespace SophiApp.Services
 {
-    using Microsoft.UI.Xaml.Controls;
-    using SophiApp.Contracts.Services;
-    using SophiApp.Helpers;
-    using SophiApp.ViewModels;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Microsoft.UI.Xaml.Controls;
+    using SophiApp.Contracts.Services;
+    using SophiApp.Helpers;
+    using SophiApp.ViewModels;
 
     /// <inheritdoc/>
     public class NavigationViewService : INavigationViewService
@@ -36,6 +36,17 @@
         public object? SettingsItem => navigationView?.SettingsItem;
 
         /// <inheritdoc/>
+        public NavigationViewItem? GetSelectedItem(Type pageType)
+        {
+            if (navigationView != null)
+            {
+                return GetSelectedItem(navigationView.MenuItems, pageType) ?? GetSelectedItem(navigationView.FooterMenuItems, pageType);
+            }
+
+            return null;
+        }
+
+        /// <inheritdoc/>
         [MemberNotNull(nameof(NavigationViewService.navigationView))]
         public void Initialize(NavigationView navigationView)
         {
@@ -51,36 +62,6 @@
             {
                 navigationView.BackRequested -= OnBackRequested;
                 navigationView.ItemInvoked -= OnItemInvoked;
-            }
-        }
-
-        /// <inheritdoc/>
-        public NavigationViewItem? GetSelectedItem(Type pageType)
-        {
-            if (navigationView != null)
-            {
-                return GetSelectedItem(navigationView.MenuItems, pageType) ?? GetSelectedItem(navigationView.FooterMenuItems, pageType);
-            }
-
-            return null;
-        }
-
-        private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => navigationService.GoBack();
-
-        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked)
-            {
-                navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
-            }
-            else
-            {
-                var selectedItem = args.InvokedItemContainer as NavigationViewItem;
-
-                if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
-                {
-                    navigationService.NavigateTo(pageKey);
-                }
             }
         }
 
@@ -111,6 +92,25 @@
             }
 
             return false;
+        }
+
+        private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => navigationService.GoBack();
+
+        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+            }
+            else
+            {
+                var selectedItem = args.InvokedItemContainer as NavigationViewItem;
+
+                if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
+                {
+                    navigationService.NavigateTo(pageKey);
+                }
+            }
         }
     }
 }

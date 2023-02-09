@@ -1,11 +1,11 @@
-﻿using Microsoft.UI.Xaml;
-using SophiApp.Contracts.Services;
-using SophiApp.Helpers;
-using System;
-using System.Threading.Tasks;
-
-namespace SophiApp.Services
+﻿namespace SophiApp.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.UI.Xaml;
+    using SophiApp.Contracts.Services;
+    using SophiApp.Helpers;
+
     /// <inheritdoc/>
     public class ThemeSelectorService : IThemeSelectorService
     {
@@ -32,14 +32,6 @@ namespace SophiApp.Services
         }
 
         /// <inheritdoc/>
-        public async Task SetThemeAsync(ElementTheme theme)
-        {
-            Theme = theme;
-            await SetRequestedThemeAsync();
-            await SaveThemeInSettingsAsync(Theme);
-        }
-
-        /// <inheritdoc/>
         public async Task SetRequestedThemeAsync()
         {
             if (App.MainWindow.Content is FrameworkElement rootElement)
@@ -49,6 +41,14 @@ namespace SophiApp.Services
             }
 
             await Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public async Task SetThemeAsync(ElementTheme theme)
+        {
+            Theme = theme;
+            await SetRequestedThemeAsync();
+            await SaveThemeInSettingsAsync(Theme);
         }
 
         private async Task<ElementTheme> LoadThemeFromSettingsAsync()

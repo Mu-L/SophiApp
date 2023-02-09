@@ -1,13 +1,22 @@
 ﻿namespace SophiApp.Services
 {
-    using Newtonsoft.Json;
-    using SophiApp.Contracts.Services;
     using System.IO;
     using System.Text;
+    using Newtonsoft.Json;
+    using SophiApp.Contracts.Services;
 
     /// <inheritdoc/>
     public class FileService : IFileService
     {
+        /// <inheritdoc/>
+        public void Delete(string folderPath, string fileName)
+        {
+            if (fileName != null && File.Exists(Path.Combine(folderPath, fileName)))
+            {
+                File.Delete(Path.Combine(folderPath, fileName));
+            }
+        }
+
         /// <inheritdoc/>
         public T? Read<T>(string folderPath, string fileName)
         {
@@ -31,15 +40,6 @@
 
             var fileContent = JsonConvert.SerializeObject(content);
             File.WriteAllText(Path.Combine(folderPath, fileName), fileContent, Encoding.UTF8);
-        }
-
-        /// <inheritdoc/>
-        public void Delete(string folderPath, string fileName)
-        {
-            if (fileName != null && File.Exists(Path.Combine(folderPath, fileName)))
-            {
-                File.Delete(Path.Combine(folderPath, fileName));
-            }
         }
     }
 }

@@ -1,20 +1,27 @@
-﻿namespace SophiApp.Helpers;
-
-using System.Runtime.InteropServices;
-using System.Text;
-
-public class RuntimeHelper
+﻿namespace SophiApp.Helpers
 {
-    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern int GetCurrentPackageFullName(ref int packageFullNameLength, StringBuilder? packageFullName);
+    using System.Runtime.InteropServices;
+    using System.Text;
 
-    public static bool IsMSIX
+    /// <summary>
+    /// Runtime helper.
+    /// </summary>
+    public class RuntimeHelper
     {
-        get
+        /// <summary>
+        /// Gets a value indicating whether is MSIX.
+        /// </summary>
+        public static bool IsMSIX
         {
-            var length = 0;
+            get
+            {
+                var length = 0;
 
-            return GetCurrentPackageFullName(ref length, null) != 15700L;
+                return GetCurrentPackageFullName(ref length, null) != 15700L;
+            }
         }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern int GetCurrentPackageFullName(ref int packageFullNameLength, StringBuilder? packageFullName);
     }
 }

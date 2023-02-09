@@ -1,8 +1,8 @@
 ﻿namespace SophiApp.Contracts.Services
 {
-    using Microsoft.UI.Xaml.Controls;
     using System;
     using System.Collections.Generic;
+    using Microsoft.UI.Xaml.Controls;
 
     /// <summary>
     /// Performs navigation for view in app.
@@ -26,6 +26,12 @@
         }
 
         /// <summary>
+        /// Get selected item.
+        /// </summary>
+        /// <param name="pageType">type of page.</param>
+        NavigationViewItem? GetSelectedItem(Type pageType);
+
+        /// <summary>
         /// Initialize navigation view service.
         /// </summary>
         /// <param name="navigationView"><see cref="NavigationView"/>.</param>
@@ -35,11 +41,5 @@
         /// Unregister events.
         /// </summary>
         void UnregisterEvents();
-
-        /// <summary>
-        /// Get selected item.
-        /// </summary>
-        /// <param name="pageType">type of page.</param>
-        NavigationViewItem? GetSelectedItem(Type pageType);
     }
 }

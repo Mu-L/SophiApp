@@ -28,7 +28,7 @@ public class NavigationHelper
     public static string GetNavigateTo(NavigationViewItem item) => (string)item.GetValue(NavigateToProperty);
 
     /// <summary>
-    /// Gets the value of the NavigateTo property from the item
+    /// Gets the value of the NavigateTo property from the item.
     /// </summary>
     /// <param name="item"><see cref="NavigationViewItem"/>.</param>
     /// <param name="value"><see cref="string"/>.</param>

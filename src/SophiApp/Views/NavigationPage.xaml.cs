@@ -4,6 +4,8 @@ namespace SophiApp.Views
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Media;
+    using SophiApp.Helpers;
+    using SophiApp.ViewModels;
     using Windows.System;
 
     /// <summary>
@@ -20,7 +22,15 @@ namespace SophiApp.Views
             App.MainWindow.ExtendsContentIntoTitleBar = true;
             App.MainWindow.SetTitleBar(AppTitleBar);
             App.MainWindow.Activated += MainWindow_Activated;
-            AppTitleBarText.Text = "AppDisplayName";
+            AppTitleBarText.Text = $"{App.Name} {App.Version}";
+        }
+
+        /// <summary>
+        /// Gets <see cref="NavigationViewModel"/>.
+        /// </summary>
+        public NavigationViewModel? ViewModel
+        {
+            get;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
@@ -41,12 +51,6 @@ namespace SophiApp.Views
         {
         }
 
-        private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
-            KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
-            KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
-        }
-
         private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
         {
             var resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
@@ -63,6 +67,13 @@ namespace SophiApp.Views
                 Right = AppTitleBar.Margin.Right,
                 Bottom = AppTitleBar.Margin.Bottom,
             };
+        }
+
+        private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            TitleBarHelper.UpdateTitleBar(RequestedTheme);
+            KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
+            KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
         }
     }
 }

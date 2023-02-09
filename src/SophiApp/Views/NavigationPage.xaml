@@ -16,10 +16,11 @@
               Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
               IsHitTestVisible="True"
               VerticalAlignment="Top">
-            <Image Source="/Assets/WindowIcon.ico"
+            <Image Source="/Assets/SophiApp.ico"
                    HorizontalAlignment="Left"
                    Width="16"
-                   Height="16" />
+                   Height="16"
+                   Margin="5, 0, 0, 0"/>
             <TextBlock x:Name="AppTitleBarText"
                        VerticalAlignment="Center"
                        TextWrapping="NoWrap"
@@ -83,7 +84,7 @@
                     </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                 </behaviors:NavigationViewHeaderBehavior>
             </i:Interaction.Behaviors>
-            <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
+            <Grid Margin="{StaticResource NavigationViewContentMargin}">
                 <Frame x:Name="NavigationFrame" />
             </Grid>
         </NavigationView>

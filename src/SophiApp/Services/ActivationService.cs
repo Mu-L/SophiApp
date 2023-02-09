@@ -1,14 +1,14 @@
 ﻿namespace SophiApp.Services
 {
+    using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
     using SophiApp.Contracts.Services;
     using SophiApp.Views;
-    using System.Threading.Tasks;
 
     /// <inheritdoc/>
     public class ActivationService : IActivationService
     {
-        private UIElement? shell = null;
+        private UIElement? shell;
 
         /// <inheritdoc/>
         public async Task ActivateAsync(object activationArgs)

@@ -1,10 +1,10 @@
 ﻿namespace SophiApp.Helpers;
 
+using System;
+using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using System;
-using System.Runtime.InteropServices;
 using Windows.UI;
 
 /// <summary>
@@ -15,8 +15,8 @@ using Windows.UI;
 /// </summary>
 internal class TitleBarHelper
 {
-    private const int WAINACTIVE = 0x00;
     private const int WAACTIVE = 0x01;
+    private const int WAINACTIVE = 0x00;
     private const int WMACTIVATE = 0x0006;
 
     /// <summary>

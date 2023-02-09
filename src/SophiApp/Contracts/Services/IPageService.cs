@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace SophiApp.Contracts.Services
+﻿namespace SophiApp.Contracts.Services
 {
+    using System;
+
     /// <summary>
     /// Performs page servise in app.
     /// </summary>

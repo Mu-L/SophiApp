@@ -25,6 +25,11 @@
     <None Remove="Views\NavigationPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Styles\FontSizes.xaml" />
+    <Page Remove="Styles\TextBlock.xaml" />
+    <Page Remove="Styles\Thickness.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -40,7 +45,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageReference Include="WinUIEx" Version="2.1.0" />
@@ -56,6 +61,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\StyleCopAnalyzer.ruleset" Link="StyleCopAnalyzer.ruleset" />
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -64,6 +72,17 @@
     <Page Update="Views\NavigationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Styles\FontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
   <!-- 

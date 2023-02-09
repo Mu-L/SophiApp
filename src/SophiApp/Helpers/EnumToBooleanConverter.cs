@@ -1,8 +1,8 @@
 ﻿namespace SophiApp.Helpers;
 
+using System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
-using System;
 
 /// <inheritdoc/>
 public class EnumToBooleanConverter : IValueConverter

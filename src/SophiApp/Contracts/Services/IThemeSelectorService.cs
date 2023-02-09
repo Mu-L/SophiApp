@@ -1,7 +1,7 @@
 ﻿namespace SophiApp.Contracts.Services
 {
-    using Microsoft.UI.Xaml;
     using System.Threading.Tasks;
+    using Microsoft.UI.Xaml;
 
     /// <summary>
     /// Performs theme selection service in app.
@@ -22,14 +22,14 @@
         Task InitializeAsync();
 
         /// <summary>
-        /// Sets app theme.
-        /// </summary>
-        /// <param name="theme"><see cref="ElementTheme"/></param>
-        Task SetThemeAsync(ElementTheme theme);
-
-        /// <summary>
         /// Sets requested app theme.
         /// </summary>
         Task SetRequestedThemeAsync();
+
+        /// <summary>
+        /// Sets app theme.
+        /// </summary>
+        /// <param name="theme"><see cref="ElementTheme"/>.</param>
+        Task SetThemeAsync(ElementTheme theme);
     }
 }

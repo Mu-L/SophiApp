@@ -24,6 +24,15 @@ public class NavigationViewModel : ObservableRecipient
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether get or set back property.
+    /// </summary>
+    public bool IsBackEnabled
+    {
+        get => isBackEnabled;
+        set => SetProperty(ref isBackEnabled, value);
+    }
+
+    /// <summary>
     /// Gets <see cref="INavigationService"/>.
     /// </summary>
     public INavigationService NavigationService
@@ -37,15 +46,6 @@ public class NavigationViewModel : ObservableRecipient
     public INavigationViewService NavigationViewService
     {
         get;
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether get or set back property.
-    /// </summary>
-    public bool IsBackEnabled
-    {
-        get => isBackEnabled;
-        set => SetProperty(ref isBackEnabled, value);
     }
 
     /// <summary>

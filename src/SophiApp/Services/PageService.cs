@@ -1,13 +1,13 @@
 ﻿namespace SophiApp.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using CommunityToolkit.Mvvm.ComponentModel;
     using Microsoft.UI.Xaml.Controls;
     using SophiApp.Contracts.Services;
     using SophiApp.ViewModels;
     using SophiApp.Views;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     /// <inheritdoc/>
     public class PageService : IPageService
@@ -23,7 +23,7 @@
             // Configure<MainViewModel, MainPage>();
             // Configure<BlankViewModel, BlankPage>();
             // Configure<ContentGridViewModel, ContentGridPage>();
-            // Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
+            Configure<NavigationViewModel, NavigationPage>();
             Configure<SettingsViewModel, SettingsPage>();
         }
 

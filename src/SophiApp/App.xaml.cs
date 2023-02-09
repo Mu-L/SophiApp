@@ -1,5 +1,7 @@
 ﻿namespace SophiApp
 {
+    using System;
+    using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.UI.Xaml;
@@ -8,7 +10,6 @@
     using SophiApp.Services;
     using SophiApp.ViewModels;
     using SophiApp.Views;
-    using System;
     using WinUIEx;
     using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
@@ -17,6 +18,8 @@
     /// </summary>
     public partial class App : Application
     {
+        private static Version version = Assembly.GetExecutingAssembly().GetName().Version!;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -44,12 +47,14 @@
                     services.AddSingleton<IActivationService, ActivationService>();
                     services.AddSingleton<IPageService, PageService>();
                     services.AddSingleton<INavigationService, NavigationService>();
+
                     // services.AddSingleton<ISampleDataService, SampleDataService>();
                     services.AddSingleton<IFileService, FileService>();
 
                     // Views and ViewModels
                     services.AddTransient<SettingsPage>();
                     services.AddTransient<SettingsViewModel>();
+
                     // services.AddTransient<ContentGridDetailViewModel>();
                     // services.AddTransient<ContentGridDetailPage>();
                     // services.AddTransient<ContentGridViewModel>();
@@ -70,9 +75,19 @@
         }
 
         /// <summary>
-        /// Gets or sets <see cref="MainWindow"/>.
+        /// Gets app name.
         /// </summary>
-        public static WindowEx MainWindow { get; set; } = new MainWindow();
+        public static string Name => "SophiApp";
+        
+        /// <summary>
+        /// Gets app version.
+        /// </summary>
+        public static string Version => $"{version.Major}.{version.Minor}.{version.Build}";
+
+/// <summary>
+/// Gets or sets <see cref="MainWindow"/>.
+/// </summary>
+public static WindowEx MainWindow { get; set; } = new MainWindow();
 
         // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
         // https://docs.microsoft.com/dotnet/core/extensions/generic-host
@@ -111,6 +126,7 @@
         {
             base.OnLaunched(args);
             await App.GetService<IActivationService>().ActivateAsync(args);
+            MainWindow.Title = Name;
         }
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)

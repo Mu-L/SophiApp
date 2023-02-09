@@ -30,6 +30,11 @@ public interface INavigationService
     }
 
     /// <summary>
+    /// Go to back state.
+    /// </summary>
+    bool GoBack();
+
+    /// <summary>
     /// Performs navigate to page.
     /// </summary>
     /// <param name="pageKey">page key.</param>
@@ -38,9 +43,8 @@ public interface INavigationService
     bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
 
     /// <summary>
-    /// Go to back state.
+    /// Sets list item animation.
     /// </summary>
-    bool GoBack();
-
+    /// <param name="item">list item.</param>
     void SetListDataItemForNextConnectedAnimation(object item);
 }

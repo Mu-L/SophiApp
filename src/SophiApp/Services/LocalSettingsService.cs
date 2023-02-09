@@ -1,13 +1,13 @@
 ﻿namespace SophiApp.Services
 {
-    using Microsoft.Extensions.Options;
-    using SophiApp.Contracts.Services;
-    using SophiApp.Helpers;
-    using SophiApp.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Options;
+    using SophiApp.Contracts.Services;
+    using SophiApp.Helpers;
+    using SophiApp.Models;
     using Windows.Storage;
 
     /// <inheritdoc/>
@@ -16,15 +16,13 @@
         private const string DefaultApplicationDataFolder = "SophiApp/ApplicationData";
         private const string DefaultLocalSettingsFile = "LocalSettings.json";
 
-        private readonly IFileService fileService;
-        private readonly LocalSettingsOptions options;
-        private readonly string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private readonly string applicationDataFolder;
+        private readonly IFileService fileService;
+        private readonly string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private readonly string localSettingsFile;
-
-        private IDictionary<string, object> settings;
-
+        private readonly LocalSettingsOptions options;
         private bool isInitialized;
+        private IDictionary<string, object> settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalSettingsService"/> class.

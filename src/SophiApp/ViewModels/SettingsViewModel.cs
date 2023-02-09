@@ -1,13 +1,13 @@
 ﻿namespace SophiApp.ViewModels
 {
+    using System;
+    using System.Reflection;
+    using System.Windows.Input;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Microsoft.UI.Xaml;
     using SophiApp.Contracts.Services;
     using SophiApp.Helpers;
-    using System;
-    using System.Reflection;
-    using System.Windows.Input;
     using Windows.ApplicationModel;
 
     /// <summary>
@@ -40,21 +40,30 @@
                 });
         }
 
+        /// <summary>
+        /// Gets or sets element theme.
+        /// </summary>
         public ElementTheme ElementTheme
         {
             get => elementTheme;
             set => SetProperty(ref elementTheme, value);
         }
 
+        /// <summary>
+        /// Gets switch theme.
+        /// </summary>
+        public ICommand SwitchThemeCommand
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets or sets version description.
+        /// </summary>
         public string VersionDescription
         {
             get => versionDescription;
             set => SetProperty(ref versionDescription, value);
-        }
-
-        public ICommand SwitchThemeCommand
-        {
-            get;
         }
 
         private static string GetVersionDescription()
@@ -72,7 +81,7 @@
                 version = Assembly.GetExecutingAssembly().GetName().Version!;
             }
 
-            return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"{App.Name} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
     }
 }
