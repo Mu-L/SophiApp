@@ -1,43 +1,72 @@
-﻿namespace SophiApp.Services
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+
+using SophiApp.Activation;
+using SophiApp.Contracts.Services;
+using SophiApp.Views;
+
+namespace SophiApp.Services;
+
+public class ActivationService : IActivationService
 {
-    using System.Threading.Tasks;
-    using Microsoft.UI.Xaml;
-    using SophiApp.Contracts.Services;
-    using SophiApp.Views;
+    private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
+    private readonly IEnumerable<IActivationHandler> _activationHandlers;
+    private readonly IThemeSelectorService _themeSelectorService;
+    private UIElement? _shell = null;
 
-    /// <inheritdoc/>
-    public class ActivationService : IActivationService
+    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
     {
-        private UIElement? shell;
+        _defaultHandler = defaultHandler;
+        _activationHandlers = activationHandlers;
+        _themeSelectorService = themeSelectorService;
+    }
 
-        /// <inheritdoc/>
-        public async Task ActivateAsync(object activationArgs)
+    public async Task ActivateAsync(object activationArgs)
+    {
+        // Execute tasks before activation.
+        await InitializeAsync();
+
+        // Set the MainWindow Content.
+        if (App.MainWindow.Content == null)
         {
-            // Execute tasks before activation.
-            await InitializeAsync();
-
-            // Set the MainWindow Content.
-            if (App.MainWindow.Content == null)
-            {
-                shell = App.GetService<NavigationPage>();
-                App.MainWindow.Content = shell;
-            }
-
-            // Activate the MainWindow.
-            App.MainWindow.Activate();
-
-            // Execute tasks after activation.
-            await StartupAsync();
+            _shell = App.GetService<ShellPage>();
+            App.MainWindow.Content = _shell ?? new Frame();
         }
 
-        private async Task InitializeAsync()
+        // Handle activation via ActivationHandlers.
+        await HandleActivationAsync(activationArgs);
+
+        // Activate the MainWindow.
+        App.MainWindow.Activate();
+
+        // Execute tasks after activation.
+        await StartupAsync();
+    }
+
+    private async Task HandleActivationAsync(object activationArgs)
+    {
+        var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
+
+        if (activationHandler != null)
         {
-            await Task.CompletedTask;
+            await activationHandler.HandleAsync(activationArgs);
         }
 
-        private async Task StartupAsync()
+        if (_defaultHandler.CanHandle(activationArgs))
         {
-            await Task.CompletedTask;
+            await _defaultHandler.HandleAsync(activationArgs);
         }
+    }
+
+    private async Task InitializeAsync()
+    {
+        await _themeSelectorService.InitializeAsync().ConfigureAwait(false);
+        await Task.CompletedTask;
+    }
+
+    private async Task StartupAsync()
+    {
+        await _themeSelectorService.SetRequestedThemeAsync();
+        await Task.CompletedTask;
     }
 }

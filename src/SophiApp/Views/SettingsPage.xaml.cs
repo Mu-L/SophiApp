@@ -1,18 +1,26 @@
-namespace SophiApp.Views
-{
-    using Microsoft.UI.Xaml.Controls;
+﻿// <copyright file="SettingsPage.xaml.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
 
+using Microsoft.UI.Xaml.Controls;
+using SophiApp.ViewModels;
+
+namespace SophiApp.Views;
+
+// TODO: Set the URL for your privacy policy by updating SettingsPage_PrivacyTermsLink.NavigateUri in Resources.resw.
+public sealed partial class SettingsPage : Page
+{
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Initializes a new instance of the <see cref="SettingsPage"/> class.
     /// </summary>
-    public sealed partial class SettingsPage : Page
+    public SettingsPage()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SettingsPage"/> class.
-        /// </summary>
-        public SettingsPage()
-        {
-            this.InitializeComponent();
-        }
+        ViewModel = App.GetService<SettingsViewModel>();
+        InitializeComponent();
+    }
+
+    public SettingsViewModel ViewModel
+    {
+        get;
     }
 }

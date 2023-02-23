@@ -1,67 +1,63 @@
-﻿namespace SophiApp.Services
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+using Microsoft.UI.Xaml.Controls;
+
+using SophiApp.Contracts.Services;
+using SophiApp.ViewModels;
+using SophiApp.Views;
+
+namespace SophiApp.Services;
+
+public class PageService : IPageService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using CommunityToolkit.Mvvm.ComponentModel;
-    using Microsoft.UI.Xaml.Controls;
-    using SophiApp.Contracts.Services;
-    using SophiApp.ViewModels;
-    using SophiApp.Views;
+    private readonly Dictionary<string, Type> _pages = new();
 
-    /// <inheritdoc/>
-    public class PageService : IPageService
+    public PageService()
     {
-        private readonly Dictionary<string, Type> pages = new();
+        Configure<PrivacyViewModel, PrivacyPage>();
+        Configure<PersonalizationViewModel, PersonalizationPage>();
+        Configure<SystemViewModel, SystemPage>();
+        Configure<UwpViewModel, UwpPage>();
+        Configure<TaskSchedulerViewModel, TaskSchedulerPage>();
+        Configure<SecurityViewModel, SecurityPage>();
+        Configure<ContextMenuViewModel, ContextMenuPage>();
+        Configure<ProViewModel, ProPage>();
+        Configure<SettingsViewModel, SettingsPage>();
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PageService"/> class.
-        /// </summary>
-        public PageService()
+    public Type GetPageType(string key)
+    {
+        Type? pageType;
+        lock (_pages)
         {
-            // TODO: Configure this !
-            // Configure<MainViewModel, MainPage>();
-            // Configure<BlankViewModel, BlankPage>();
-            // Configure<ContentGridViewModel, ContentGridPage>();
-            Configure<NavigationViewModel, NavigationPage>();
-            Configure<SettingsViewModel, SettingsPage>();
+            if (!_pages.TryGetValue(key, out pageType))
+            {
+                throw new ArgumentException($"Page not found: {key}. Did you forget to call PageService.Configure?");
+            }
         }
 
-        /// <inheritdoc/>
-        public Type GetPageType(string key)
+        return pageType;
+    }
+
+    private void Configure<VM, V>()
+        where VM : ObservableObject
+        where V : Page
+    {
+        lock (_pages)
         {
-            Type? pageType;
-            lock (pages)
+            var key = typeof(VM).FullName!;
+            if (_pages.ContainsKey(key))
             {
-                if (!pages.TryGetValue(key, out pageType))
-                {
-                    throw new ArgumentException($"Page not found: {key}. Did you forget to call PageService.Configure?");
-                }
+                throw new ArgumentException($"The key {key} is already configured in PageService");
             }
 
-            return pageType;
-        }
-
-        private void Configure<TVM, TV>()
-            where TVM : ObservableObject
-            where TV : Page
-        {
-            lock (pages)
+            var type = typeof(V);
+            if (_pages.Any(p => p.Value == type))
             {
-                var key = typeof(TVM).FullName!;
-                if (pages.ContainsKey(key))
-                {
-                    throw new ArgumentException($"The key {key} is already configured in PageService");
-                }
-
-                var type = typeof(TV);
-                if (pages.Any(p => p.Value == type))
-                {
-                    throw new ArgumentException($"This type is already configured with key {pages.First(p => p.Value == type).Key}");
-                }
-
-                pages.Add(key, type);
+                throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == type).Key}");
             }
+
+            _pages.Add(key, type);
         }
     }
 }

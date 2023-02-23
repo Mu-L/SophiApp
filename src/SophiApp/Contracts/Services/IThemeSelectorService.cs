@@ -1,35 +1,17 @@
-﻿namespace SophiApp.Contracts.Services
+﻿using Microsoft.UI.Xaml;
+
+namespace SophiApp.Contracts.Services;
+
+public interface IThemeSelectorService
 {
-    using System.Threading.Tasks;
-    using Microsoft.UI.Xaml;
-
-    /// <summary>
-    /// Performs theme selection service in app.
-    /// </summary>
-    public interface IThemeSelectorService
+    ElementTheme Theme
     {
-        /// <summary>
-        /// Gets current app theme.
-        /// </summary>
-        ElementTheme Theme
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Initialize service.
-        /// </summary>
-        Task InitializeAsync();
-
-        /// <summary>
-        /// Sets requested app theme.
-        /// </summary>
-        Task SetRequestedThemeAsync();
-
-        /// <summary>
-        /// Sets app theme.
-        /// </summary>
-        /// <param name="theme"><see cref="ElementTheme"/>.</param>
-        Task SetThemeAsync(ElementTheme theme);
+        get;
     }
+
+    Task InitializeAsync();
+
+    Task SetThemeAsync(ElementTheme theme);
+
+    Task SetRequestedThemeAsync();
 }

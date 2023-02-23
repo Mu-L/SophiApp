@@ -2,18 +2,24 @@
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap rescap genTemplate">
 
   <Identity
-    Name="e2ce67f0-a446-4d28-b49b-c973366b9efe"
-    Publisher="CN=Inestic"
+    Name="8b7f4f0a-292d-41ec-ab6b-52b68b39c6f1"
+    Publisher="CN=Dart Wader"
     Version="1.0.0.0" />
-
+    
+  <mp:PhoneIdentity PhoneProductId="8b7f4f0a-292d-41ec-ab6b-52b68b39c6f1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+    
   <Properties>
     <DisplayName>SophiApp</DisplayName>
-    <PublisherDisplayName>Inestic</PublisherDisplayName>
+    <PublisherDisplayName>Dart Wader</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,19 +37,41 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="SophiApp"
-        Description="SophiApp"
+        DisplayName="ms-resource:AppDisplayName"
+        Description="ms-resource:AppDescription"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+          <desktop:Extension Category="windows.toastNotificationActivation">
+              <desktop:ToastNotificationActivation ToastActivatorCLSID="d2a9944d-922e-4bce-9b2b-7635b15252b4" />
+          </desktop:Extension>
+
+          <com:Extension Category="windows.comServer">
+              <com:ComServer>
+                  <com:ExeServer Executable="SophiApp.exe" Arguments="----AppNotificationActivated:" DisplayName="Toast activator">
+                      <com:Class Id="d2a9944d-922e-4bce-9b2b-7635b15252b4" DisplayName="Toast activator"/>
+                  </com:ExeServer>
+              </com:ComServer>
+          </com:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-	<rescap:Capability Name="allowElevation" />
+    <rescap:Capability Name="allowElevation" />
   </Capabilities>
+
+  <genTemplate:Metadata>
+    <genTemplate:Item Name="generator" Value="Template Studio"/>
+    <genTemplate:Item Name="wizardVersion" Version="v5.3" />
+    <genTemplate:Item Name="projectType" Value="NavView" />
+    <genTemplate:Item Name="framework" Value="MVVMToolkit" />
+    <genTemplate:Item Name="platform" Value="WinUI" />
+    <genTemplate:Item Name="appmodel" Value="Desktop" />
+  </genTemplate:Metadata>
 </Package>

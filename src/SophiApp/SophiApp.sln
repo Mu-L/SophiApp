@@ -1,54 +1,49 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33213.308
+VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SophiApp", "SophiApp.csproj", "{EFCD24EA-41C8-4238-B452-D69F680A9CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SophiApp", "SophiApp.csproj", "{A9159F46-1B89-4815-AD59-D386D39ABDDC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{898DC093-FC3A-4BAD-8F39-5E074D1C5D92}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{C3966F30-C784-4186-A087-F99BE0904542}"
 	ProjectSection(SolutionItems) = preProject
 		..\Directory.Build.props = ..\Directory.Build.props
 		..\StyleCopAnalyzer.ruleset = ..\StyleCopAnalyzer.ruleset
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74DDC0EC-D014-459F-A46B-CD175877DD1F}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ARM64 = Debug|ARM64
+		Debug|Any CPU = Debug|Any CPU
+		Debug|arm64 = Debug|arm64
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|ARM64 = Release|ARM64
+		Release|Any CPU = Release|Any CPU
+		Release|arm64 = Release|arm64
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|ARM64.Build.0 = Debug|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|ARM64.Deploy.0 = Debug|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x64.ActiveCfg = Debug|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x64.Build.0 = Debug|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x64.Deploy.0 = Debug|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x86.ActiveCfg = Debug|x86
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x86.Build.0 = Debug|x86
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Debug|x86.Deploy.0 = Debug|x86
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|ARM64.ActiveCfg = Release|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|ARM64.Build.0 = Release|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|ARM64.Deploy.0 = Release|ARM64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x64.ActiveCfg = Release|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x64.Build.0 = Release|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x64.Deploy.0 = Release|x64
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x86.ActiveCfg = Release|x86
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x86.Build.0 = Release|x86
-		{EFCD24EA-41C8-4238-B452-D69F680A9CFE}.Release|x86.Deploy.0 = Release|x86
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|Any CPU.Build.0 = Debug|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|arm64.ActiveCfg = Debug|arm64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|arm64.Build.0 = Debug|arm64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|x64.ActiveCfg = Debug|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|x64.Build.0 = Debug|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|x86.ActiveCfg = Debug|x86
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Debug|x86.Build.0 = Debug|x86
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|Any CPU.ActiveCfg = Release|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|Any CPU.Build.0 = Release|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|arm64.ActiveCfg = Release|arm64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|arm64.Build.0 = Release|arm64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|x64.ActiveCfg = Release|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|x64.Build.0 = Release|x64
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|x86.ActiveCfg = Release|x86
+		{A9159F46-1B89-4815-AD59-D386D39ABDDC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BF17C815-E198-4691-866F-7AB2EE34A010}
+		SolutionGuid = {93CDAA3A-5EB2-401B-ABE0-7A6FA515DDA2}
 	EndGlobalSection
 EndGlobal

@@ -1,20 +1,15 @@
-namespace SophiApp
-{
-    using System;
-    using System.IO;
-    using WinUIEx;
+﻿using SophiApp.Helpers;
 
-    /// <inheritdoc/>
-    public sealed partial class MainWindow : WindowEx
+namespace SophiApp;
+
+public sealed partial class MainWindow : WindowEx
+{
+    public MainWindow()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MainWindow"/> class.
-        /// </summary>
-        public MainWindow()
-        {
-            InitializeComponent();
-            AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/SophiApp.ico"));
-            Content = null;
-        }
+        InitializeComponent();
+
+        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
+        Content = null;
+        Title = "AppDisplayName".GetLocalized();
     }
 }

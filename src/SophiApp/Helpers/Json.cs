@@ -1,35 +1,26 @@
-﻿namespace SophiApp.Helpers;
+﻿// <copyright file="Json.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
 
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-/// <summary>
-/// <see cref="Json"/> class extension.
-/// </summary>
+namespace SophiApp.Helpers;
+
 public static class Json
 {
-    /// <summary>
-    /// Serializes the specified object to a JSON string.
-    /// </summary>
-    /// <param name="value">The object to serialize.</param>
-    public static async Task<string> SerializeAsync(object? value)
+    public static async Task<T> DeserializeAsync<T>(string value)
     {
-        return await Task.Run(() =>
+        return await Task.Run<T>(() =>
         {
-            return JsonConvert.SerializeObject(value);
+            return JsonConvert.DeserializeObject<T>(value);
         });
     }
 
-    /// <summary>
-    /// Deserializes the JSON to the specified .NET type.
-    /// </summary>
-    /// <typeparam name="T">The type of the object to deserialize to.</typeparam>
-    /// <param name="value">The JSON to deserialize.</param>
-    public static async Task<T> ToObjectAsync<T>(string value)
+    public static async Task<string> SerializeAsync(object value)
     {
-        return await Task.Run(() =>
+        return await Task.Run<string>(() =>
         {
-            return JsonConvert.DeserializeObject<T>(value)!;
+            return JsonConvert.SerializeObject(value);
         });
     }
 }

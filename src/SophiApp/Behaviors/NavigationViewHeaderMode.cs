@@ -1,8 +1,9 @@
-﻿namespace SophiApp.Behaviors;
+﻿// <copyright file="NavigationViewHeaderMode.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
 
-/// <summary>
-/// Navigation header display modes.
-/// </summary>
+namespace SophiApp.Behaviors;
+
 public enum NavigationViewHeaderMode
 {
     Always,

@@ -1,26 +1,29 @@
-﻿namespace SophiApp.Helpers;
+﻿// <copyright file="SettingsStorageExtensions.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-/// <summary>
-/// Use these extension methods to store and retrieve local and roaming app data.
-/// More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/apps/design/app-settings/store-and-retrieve-app-data.
-/// </summary>
+namespace SophiApp.Helpers;
+
+// Use these extension methods to store and retrieve local and roaming app data
+// More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/apps/design/app-settings/store-and-retrieve-app-data
 public static class SettingsStorageExtensions
 {
     private const string FileExtension = ".json";
 
-    /// <summary>
-    /// Checks if the roaming storage is available.
-    /// </summary>
-    /// <param name="appData"><see cref="ApplicationData"/>.</param>
     public static bool IsRoamingStorageAvailable(this ApplicationData appData)
     {
         return appData.RoamingStorageQuota == 0;
+    }
+
+    public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
+    {
+        var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
+        var fileContent = await Json.SerializeAsync(content);
+
+        await FileIO.WriteTextAsync(file, fileContent);
     }
 
     public static async Task<T?> ReadAsync<T>(this StorageFolder folder, string name)
@@ -33,77 +36,31 @@ public static class SettingsStorageExtensions
         var file = await folder.GetFileAsync($"{name}.json");
         var fileContent = await FileIO.ReadTextAsync(file);
 
-        return await Json.ToObjectAsync<T>(fileContent);
+        return await Json.DeserializeAsync<T>(fileContent);
+    }
+
+    public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
+    {
+        settings.SaveString(key, await Json.SerializeAsync(value));
+    }
+
+    public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+    {
+        settings.Values[key] = value;
     }
 
     public static async Task<T?> ReadAsync<T>(this ApplicationDataContainer settings, string key)
     {
-        if (settings.Values.TryGetValue(key, out object? obj))
+        object? obj;
+
+        if (settings.Values.TryGetValue(key, out obj))
         {
-            return await Json.ToObjectAsync<T>((string)obj);
+            return await Json.DeserializeAsync<T>((string)obj);
         }
 
         return default;
     }
 
-    /// <summary>
-    /// Reads the contents of a file into an array of bytes.
-    /// </summary>
-    /// <param name="file">file to read.</param>
-    public static async Task<byte[]?> ReadBytesAsync(this StorageFile file)
-    {
-        if (file != null)
-        {
-            using IRandomAccessStream stream = await file.OpenReadAsync();
-            using var reader = new DataReader(stream.GetInputStreamAt(0));
-            await reader.LoadAsync((uint)stream.Size);
-            var bytes = new byte[stream.Size];
-            reader.ReadBytes(bytes);
-            return bytes;
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// Reads the contents of a file into an array of bytes.
-    /// </summary>
-    /// <param name="folder"><see cref="StorageFolder"/>.</param>
-    /// <param name="fileName">file to read.</param>
-    public static async Task<byte[]?> ReadFileAsync(this StorageFolder folder, string fileName)
-    {
-        var item = await folder.TryGetItemAsync(fileName).AsTask().ConfigureAwait(false);
-
-        if ((item != null) && item.IsOfType(StorageItemTypes.File))
-        {
-            var storageFile = await folder.GetFileAsync(fileName);
-            var content = await storageFile.ReadBytesAsync();
-            return content;
-        }
-
-        return null;
-    }
-
-    public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
-    {
-        var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-        var fileContent = await Json.SerializeAsync(content!);
-
-        await FileIO.WriteTextAsync(file, fileContent);
-    }
-
-    public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
-    {
-        settings.SaveString(key, await Json.SerializeAsync(value!));
-    }
-
-    /// <summary>
-    /// Save the contents to file as array of bytes.
-    /// </summary>
-    /// <param name="folder"><see cref="StorageFolder"/>.</param>
-    /// <param name="content">file content as byte array.</param>
-    /// <param name="fileName">file name.</param>
-    /// <param name="options"><see cref="CreationCollisionOption"/>.</param>
     public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
     {
         if (content == null)
@@ -121,15 +78,35 @@ public static class SettingsStorageExtensions
         return storageFile;
     }
 
-    public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+    public static async Task<byte[]?> ReadFileAsync(this StorageFolder folder, string fileName)
     {
-        settings.Values[key] = value;
+        var item = await folder.TryGetItemAsync(fileName).AsTask().ConfigureAwait(false);
+
+        if ((item != null) && item.IsOfType(StorageItemTypes.File))
+        {
+            var storageFile = await folder.GetFileAsync(fileName);
+            var content = await storageFile.ReadBytesAsync();
+            return content;
+        }
+
+        return null;
     }
 
-    /// <summary>
-    /// Adds an extension to the filename.
-    /// </summary>
-    /// <param name="name">file name.</param>
+    public static async Task<byte[]?> ReadBytesAsync(this StorageFile file)
+    {
+        if (file != null)
+        {
+            using IRandomAccessStream stream = await file.OpenReadAsync();
+            using var reader = new DataReader(stream.GetInputStreamAt(0));
+            await reader.LoadAsync((uint)stream.Size);
+            var bytes = new byte[stream.Size];
+            reader.ReadBytes(bytes);
+            return bytes;
+        }
+
+        return null;
+    }
+
     private static string GetFileName(string name)
     {
         return string.Concat(name, FileExtension);
