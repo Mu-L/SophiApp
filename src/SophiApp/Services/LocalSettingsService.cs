@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿// <copyright file="LocalSettingsService.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
+
+using Microsoft.Extensions.Options;
 using SophiApp.Contracts.Services;
 using SophiApp.Helpers;
 using SophiApp.Models;
@@ -14,13 +18,13 @@ public class LocalSettingsService : ILocalSettingsService
     private const string DefaultApplicationDataFolder = "SophiApp/ApplicationData";
     private const string DefaultLocalSettingsFile = "LocalSettings.json";
 
-    private readonly IFileService fileService;
-    private readonly LocalSettingsOptions options;
-    private readonly string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     private readonly string applicationDataFolder;
+    private readonly IFileService fileService;
+    private readonly string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     private readonly string localsettingsFile;
-    private IDictionary<string, object> settings;
+    private readonly LocalSettingsOptions options;
     private bool isInitialized;
+    private IDictionary<string, object> settings;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="LocalSettingsService"/> class.
@@ -34,7 +38,6 @@ public class LocalSettingsService : ILocalSettingsService
 
         applicationDataFolder = Path.Combine(localApplicationData, this.options.ApplicationDataFolder ?? DefaultApplicationDataFolder);
         localsettingsFile = this.options.LocalSettingsFile ?? DefaultLocalSettingsFile;
-
         settings = new Dictionary<string, object>();
     }
 
@@ -71,9 +74,7 @@ public class LocalSettingsService : ILocalSettingsService
         else
         {
             await InitializeAsync();
-
             settings[key] = await Json.SerializeAsync(value);
-
             await Task.Run(() => fileService.Save(applicationDataFolder, localsettingsFile, settings));
         }
     }
@@ -83,7 +84,6 @@ public class LocalSettingsService : ILocalSettingsService
         if (!isInitialized)
         {
             settings = await Task.Run(() => fileService.Read<IDictionary<string, object>>(applicationDataFolder, localsettingsFile)) ?? new Dictionary<string, object>();
-
             isInitialized = true;
         }
     }

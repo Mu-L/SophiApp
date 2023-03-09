@@ -5,11 +5,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using SophiApp.Activation;
 using SophiApp.Contracts.Services;
-using SophiApp.Helpers;
 using SophiApp.Models;
-using SophiApp.Notifications;
 using SophiApp.Services;
 using SophiApp.ViewModels;
 using SophiApp.Views;
@@ -41,42 +38,13 @@ public partial class App : Application
             .UseContentRoot(AppContext.BaseDirectory)
             .ConfigureServices((context, services) =>
             {
-                // Default Activation Handler
-                services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
-
-                // Other Activation Handlers
-                services.AddTransient<IActivationHandler, AppNotificationActivationHandler>();
-
                 // Services
-                services.AddSingleton<IAppNotificationService, AppNotificationService>();
+                services.AddSingleton<IActivationService, ActivationService>();
                 services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
                 services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-                services.AddTransient<INavigationViewService, NavigationViewService>();
-
-                services.AddSingleton<IActivationService, ActivationService>();
-                services.AddSingleton<IPageService, PageService>();
-                services.AddSingleton<INavigationService, NavigationService>();
                 services.AddSingleton<IFileService, FileService>();
 
                 // Views and ViewModels
-                services.AddTransient<SettingsViewModel>();
-                services.AddTransient<SettingsPage>();
-                services.AddTransient<ProViewModel>();
-                services.AddTransient<ProPage>();
-                services.AddTransient<ContextMenuViewModel>();
-                services.AddTransient<ContextMenuPage>();
-                services.AddTransient<SecurityViewModel>();
-                services.AddTransient<SecurityPage>();
-                services.AddTransient<TaskSchedulerViewModel>();
-                services.AddTransient<TaskSchedulerPage>();
-                services.AddTransient<UwpViewModel>();
-                services.AddTransient<UwpPage>();
-                services.AddTransient<SystemViewModel>();
-                services.AddTransient<SystemPage>();
-                services.AddTransient<PersonalizationViewModel>();
-                services.AddTransient<PersonalizationPage>();
-                services.AddTransient<PrivacyViewModel>();
-                services.AddTransient<PrivacyPage>();
                 services.AddTransient<ShellPage>();
                 services.AddTransient<ShellViewModel>();
 
@@ -85,7 +53,6 @@ public partial class App : Application
             })
             .Build();
 
-        GetService<IAppNotificationService>().Initialize();
         UnhandledException += App_UnhandledException;
     }
 
@@ -117,11 +84,28 @@ public partial class App : Application
         return service;
     }
 
+    /// <inheritdoc/>
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
-        _ = GetService<IAppNotificationService>()
-            .Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+
+        // TODO: Launch single app instance.
+        //// Get the activation args
+        // var appArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
+
+        //// Get or register the main instance
+        // var mainInstance = AppInstance.FindOrRegisterForKey("SophiApp");
+
+        //// If the main instance isn't this current instance
+        // if (!mainInstance.IsCurrent)
+        // {
+        //    // Redirect activation to that instance
+        //    await mainInstance.RedirectActivationToAsync(appArgs);
+
+        // // And exit our instance and stop
+        //    Current.Exit();
+        //    return;
+        // }
 
         await GetService<IActivationService>().ActivateAsync(args);
     }

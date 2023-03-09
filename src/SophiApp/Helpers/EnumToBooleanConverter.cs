@@ -1,14 +1,14 @@
-﻿using Microsoft.UI.Xaml;
+﻿// <copyright file="EnumToBooleanConverter.cs" company="Sophia Community">
+// Copyright (c) Sophia Community. All rights reserved.
+// </copyright>
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
 namespace SophiApp.Helpers;
 
 public class EnumToBooleanConverter : IValueConverter
 {
-    public EnumToBooleanConverter()
-    {
-    }
-
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         if (parameter is string enumString)

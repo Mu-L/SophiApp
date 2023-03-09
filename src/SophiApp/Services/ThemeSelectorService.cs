@@ -29,14 +29,6 @@ public class ThemeSelectorService : IThemeSelectorService
         await Task.CompletedTask;
     }
 
-    public async Task SetThemeAsync(ElementTheme theme)
-    {
-        Theme = theme;
-
-        await SetRequestedThemeAsync();
-        await SaveThemeInSettingsAsync(Theme);
-    }
-
     public async Task SetRequestedThemeAsync()
     {
         if (App.MainWindow.Content is FrameworkElement rootElement)
@@ -45,6 +37,14 @@ public class ThemeSelectorService : IThemeSelectorService
         }
 
         await Task.CompletedTask;
+    }
+
+    public async Task SetThemeAsync(ElementTheme theme)
+    {
+        Theme = theme;
+
+        await SetRequestedThemeAsync();
+        await SaveThemeInSettingsAsync(Theme);
     }
 
     private async Task<ElementTheme> LoadThemeFromSettingsAsync()

@@ -15,13 +15,20 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     <ApplicationIcon>Assets\SophiApp.ico</ApplicationIcon>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWinUI>true</UseWinUI>
     <UseResults>true</UseResults>
     <UseStyleCop>true</UseStyleCop>
     <UseJson>true</UseJson>
+    <UseWPF>False</UseWPF>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Personalization.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Styles\Themes.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -46,6 +53,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Styles\Themes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">

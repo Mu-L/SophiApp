@@ -50,20 +50,20 @@ public class SettingsViewModel : ObservableRecipient
     }
 
     /// <summary>
+    /// Gets switch theme command.
+    /// </summary>
+    public ICommand SwitchThemeCommand
+    {
+        get;
+    }
+
+    /// <summary>
     /// Gets or sets version description.
     /// </summary>
     public string VersionDescription
     {
         get => versionDescription;
         set => SetProperty(ref versionDescription, value);
-    }
-
-    /// <summary>
-    /// Gets switch theme command.
-    /// </summary>
-    public ICommand SwitchThemeCommand
-    {
-        get;
     }
 
     private static string GetVersionDescription()
