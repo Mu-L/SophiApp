@@ -19,27 +19,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWinUI>true</UseWinUI>
     <UseResults>true</UseResults>
-    <UseStyleCop>true</UseStyleCop>
     <UseJson>true</UseJson>
-    <UseWPF>False</UseWPF>
+    <Version>2.0.0</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="Assets\Personalization.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Styles\Themes.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="..\StyleCopAnalyzer.ruleset" Link="StyleCopAnalyzer.ruleset" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +38,7 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <PackageReference Update="Newtonsoft.Json" Version="13.0.3" />
     <Page Update="Styles\Themes.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

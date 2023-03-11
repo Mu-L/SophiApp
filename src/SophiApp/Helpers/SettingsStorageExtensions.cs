@@ -1,11 +1,11 @@
-﻿// <copyright file="SettingsStorageExtensions.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="SettingsStorageExtensions.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp.Helpers;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
-
-namespace SophiApp.Helpers;
 
 // Use these extension methods to store and retrieve local and roaming app data
 // More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/apps/design/app-settings/store-and-retrieve-app-data
@@ -13,10 +13,7 @@ public static class SettingsStorageExtensions
 {
     private const string FileExtension = ".json";
 
-    public static bool IsRoamingStorageAvailable(this ApplicationData appData)
-    {
-        return appData.RoamingStorageQuota == 0;
-    }
+    public static bool IsRoamingStorageAvailable(this ApplicationData appData) => appData.RoamingStorageQuota == 0;
 
     public static async Task<T?> ReadAsync<T>(this StorageFolder folder, string name)
     {
@@ -32,16 +29,7 @@ public static class SettingsStorageExtensions
     }
 
     public static async Task<T?> ReadAsync<T>(this ApplicationDataContainer settings, string key)
-    {
-        object? obj;
-
-        if (settings.Values.TryGetValue(key, out obj))
-        {
-            return await Json.DeserializeAsync<T>((string)obj);
-        }
-
-        return default;
-    }
+        => settings.Values.TryGetValue(key, out var obj) ? await Json.DeserializeAsync<T>((string)obj) : default;
 
     public static async Task<byte[]?> ReadBytesAsync(this StorageFile file)
     {
@@ -49,7 +37,7 @@ public static class SettingsStorageExtensions
         {
             using IRandomAccessStream stream = await file.OpenReadAsync();
             using var reader = new DataReader(stream.GetInputStreamAt(0));
-            await reader.LoadAsync((uint)stream.Size);
+            _ = await reader.LoadAsync((uint)stream.Size);
             var bytes = new byte[stream.Size];
             reader.ReadBytes(bytes);
             return bytes;
@@ -81,9 +69,7 @@ public static class SettingsStorageExtensions
     }
 
     public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
-    {
-        settings.SaveString(key, await Json.SerializeAsync(value));
-    }
+        => settings.SaveString(key, await Json.SerializeAsync(value!));
 
     public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
     {
@@ -102,13 +88,7 @@ public static class SettingsStorageExtensions
         return storageFile;
     }
 
-    public static void SaveString(this ApplicationDataContainer settings, string key, string value)
-    {
-        settings.Values[key] = value;
-    }
+    public static void SaveString(this ApplicationDataContainer settings, string key, string value) => settings.Values[key] = value;
 
-    private static string GetFileName(string name)
-    {
-        return string.Concat(name, FileExtension);
-    }
+    private static string GetFileName(string name) => string.Concat(name, FileExtension);
 }

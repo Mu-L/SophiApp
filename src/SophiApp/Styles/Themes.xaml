@@ -3,11 +3,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="Window.Background.Normal" Color="#01273F" />
+            <SolidColorBrush x:Key="Window.Content.Background" Color="#1F2A40" />
+            <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#F8F9FC" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="Window.Background.Normal" Color="#EFEFEF" />
+            <SolidColorBrush x:Key="Window.Content.Background" Color="#F6F6F8" />
+            <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#222222" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

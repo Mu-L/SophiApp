@@ -2,9 +2,6 @@
 	<ItemGroup Condition=" '$(UseResults)' == 'true' ">
 		<PackageReference Include="CSharpFunctionalExtensions" Version="2.37.0"/>
 	</ItemGroup>
-	<ItemGroup Condition=" '$(UseStyleCop)' == 'true' ">
-		<PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.435"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(UseJson)' == 'true' ">
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
 	</ItemGroup>

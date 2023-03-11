@@ -1,14 +1,14 @@
-﻿// <copyright file="LocalSettingsService.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="LocalSettingsService.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp.Services;
 
 using Microsoft.Extensions.Options;
 using SophiApp.Contracts.Services;
 using SophiApp.Helpers;
 using SophiApp.Models;
 using Windows.Storage;
-
-namespace SophiApp.Services;
 
 /// <summary>
 /// <inheritdoc/>

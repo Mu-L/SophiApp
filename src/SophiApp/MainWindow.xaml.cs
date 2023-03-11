@@ -1,10 +1,10 @@
-﻿// <copyright file="MainWindow.xaml.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="MainWindow.xaml.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
-using SophiApp.Helpers;
-
 namespace SophiApp;
+
+using SophiApp.Helpers;
 
 /// <summary>
 /// <inheritdoc/>

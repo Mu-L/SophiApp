@@ -1,5 +1,5 @@
-﻿// <copyright file="LocalSettingsOptions.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="LocalSettingsOptions.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
 namespace SophiApp.Models;

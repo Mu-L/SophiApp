@@ -12,9 +12,6 @@
     PersistenceId="MainWindow"
     mc:Ignorable="d">
     <windowex:WindowEx.Backdrop>
-        <windowex:AcrylicSystemBackdrop DarkTintColor="#2D2D2D"
-                                        DarkTintOpacity="0.5"
-                                        LightTintColor="#EFEFEF"
-                                        LightTintOpacity="0.5" />
+        <windowex:AcrylicSystemBackdrop />
     </windowex:WindowEx.Backdrop>
 </windowex:WindowEx>

@@ -1,10 +1,10 @@
-﻿// <copyright file="ResourceExtensions.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="ResourceExtensions.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
-using Microsoft.Windows.ApplicationModel.Resources;
-
 namespace SophiApp.Helpers;
+
+using Microsoft.Windows.ApplicationModel.Resources;
 
 /// <summary>
 /// Extensions for apps resources.

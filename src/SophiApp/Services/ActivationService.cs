@@ -1,13 +1,16 @@
-﻿// <copyright file="ActivationService.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="ActivationService.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp.Services;
 
 using SophiApp.Activation;
 using SophiApp.Contracts.Services;
 using SophiApp.Views;
 
-namespace SophiApp.Services;
-
+/// <summary>
+/// <inheritdoc/>
+/// </summary>
 public class ActivationService : IActivationService
 {
     private readonly IEnumerable<IActivationHandler> activationHandlers;
@@ -16,7 +19,6 @@ public class ActivationService : IActivationService
     /// <summary>
     /// Initializes a new instance of the <see cref="ActivationService"/> class.
     /// </summary>
-    /// <param name="defaultHandler"><see cref="ActivationHandler{T}"/>.</param>
     /// <param name="activationHandlers"><see cref="IActivationHandler"/> collections.</param>
     /// <param name="themeSelectorService"><see cref="IThemeSelectorService"/>.</param>
     public ActivationService(IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
@@ -25,6 +27,9 @@ public class ActivationService : IActivationService
         this.themeSelectorService = themeSelectorService;
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task ActivateAsync(object activationArgs)
     {
         // Execute tasks before activation.
@@ -49,9 +54,7 @@ public class ActivationService : IActivationService
         var activationHandler = activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
 
         if (activationHandler != null)
-        {
             await activationHandler.HandleAsync(activationArgs);
-        }
     }
 
     private async Task InitializeAsync()

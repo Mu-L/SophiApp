@@ -1,6 +1,8 @@
-﻿// <copyright file="App.xaml.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="App.xaml.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,21 +13,11 @@ using SophiApp.Services;
 using SophiApp.ViewModels;
 using SophiApp.Views;
 
-namespace SophiApp;
-
-// To learn more about WinUI 3, see https://docs.microsoft.com/windows/apps/winui/winui3/.
-
 /// <summary>
 /// <inheritdoc/>
 /// </summary>
 public partial class App : Application
 {
-    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
-    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
-    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
-    // https://docs.microsoft.com/dotnet/core/extensions/configuration
-    // https://docs.microsoft.com/dotnet/core/extensions/logging
-
     /// <summary>
     /// Initializes a new instance of the <see cref="App"/> class.
     /// </summary>
@@ -39,17 +31,18 @@ public partial class App : Application
             .ConfigureServices((context, services) =>
             {
                 // Services
-                services.AddSingleton<IActivationService, ActivationService>();
-                services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
-                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-                services.AddSingleton<IFileService, FileService>();
+                _ = services.AddSingleton<IActivationService, ActivationService>();
+                _ = services.AddSingleton<IAppService, AppService>();
+                _ = services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+                _ = services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+                _ = services.AddSingleton<IFileService, FileService>();
 
                 // Views and ViewModels
-                services.AddTransient<ShellPage>();
-                services.AddTransient<ShellViewModel>();
+                _ = services.AddTransient<ShellPage>();
+                _ = services.AddTransient<ShellViewModel>();
 
                 // Configuration
-                services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+                _ = services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
             })
             .Build();
 
@@ -76,16 +69,13 @@ public partial class App : Application
     public static T GetService<T>()
         where T : class
     {
-        if ((Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
-        {
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        }
-
-        return service;
+        return (Current as App)!.Host.Services.GetService(typeof(T)) is not T service
+            ? throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.")
+            : service;
     }
 
     /// <inheritdoc/>
-    protected async override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
 
@@ -94,7 +84,7 @@ public partial class App : Application
         // var appArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
 
         //// Get or register the main instance
-        // var mainInstance = AppInstance.FindOrRegisterForKey("SophiApp");
+        // var mainInstance = AppInstance.FindOrRegisterForKey("2e340960-5e58-4e2d-b0c1-0a1b54145345");
 
         //// If the main instance isn't this current instance
         // if (!mainInstance.IsCurrent)
@@ -110,7 +100,7 @@ public partial class App : Application
         await GetService<IActivationService>().ActivateAsync(args);
     }
 
-    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         // TODO: Log and handle exceptions as appropriate.
         // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.

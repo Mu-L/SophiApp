@@ -1,10 +1,10 @@
-﻿// <copyright file="IThemeSelectorService.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="IThemeSelectorService.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
-using Microsoft.UI.Xaml;
-
 namespace SophiApp.Contracts.Services;
+
+using Microsoft.UI.Xaml;
 
 /// <summary>
 /// Theme selection service.

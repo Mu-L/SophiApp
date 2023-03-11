@@ -1,5 +1,5 @@
-﻿// <copyright file="Usings.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="Usings.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
 global using WinUIEx;

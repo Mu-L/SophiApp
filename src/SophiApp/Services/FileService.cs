@@ -1,12 +1,12 @@
-﻿// <copyright file="FileService.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="FileService.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
-using System.Text;
+namespace SophiApp.Services;
+
 using Newtonsoft.Json;
 using SophiApp.Contracts.Services;
-
-namespace SophiApp.Services;
+using System.Text;
 
 /// <summary>
 /// <inheritdoc/>
@@ -37,7 +37,7 @@ public class FileService : IFileService
     {
         if (!Directory.Exists(folderPath))
         {
-            Directory.CreateDirectory(folderPath);
+            _ = Directory.CreateDirectory(folderPath);
         }
 
         var fileContent = JsonConvert.SerializeObject(content);

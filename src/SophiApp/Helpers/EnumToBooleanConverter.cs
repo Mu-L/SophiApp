@@ -1,11 +1,11 @@
-﻿// <copyright file="EnumToBooleanConverter.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="EnumToBooleanConverter.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp.Helpers;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
-
-namespace SophiApp.Helpers;
 
 public class EnumToBooleanConverter : IValueConverter
 {
@@ -28,11 +28,8 @@ public class EnumToBooleanConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        if (parameter is string enumString)
-        {
-            return Enum.Parse(typeof(ElementTheme), enumString);
-        }
-
-        throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
+        return parameter is string enumString
+            ? Enum.Parse(typeof(ElementTheme), enumString)
+            : throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
     }
 }

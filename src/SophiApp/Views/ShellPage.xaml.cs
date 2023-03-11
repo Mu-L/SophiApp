@@ -1,16 +1,13 @@
-﻿// <copyright file="ShellPage.xaml.cs" company="Sophia Community">
-// Copyright (c) Sophia Community. All rights reserved.
+﻿// <copyright file="ShellPage.xaml.cs" company="Team Sophia">
+// Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
+
+namespace SophiApp.Views;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using SophiApp.Helpers;
 using SophiApp.ViewModels;
-
-namespace SophiApp.Views;
-
-// TODO: Update NavigationViewItem titles and icons in ShellPage.xaml.
 
 /// <summary>
 /// <inheritdoc/>
@@ -25,11 +22,9 @@ public sealed partial class ShellPage : Page
     {
         ViewModel = viewModel;
         InitializeComponent();
-
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
         App.MainWindow.Activated += MainWindow_Activated;
-        AppTitleBarText.Text = "AppDisplayName".GetLocalized();
     }
 
     /// <summary>
