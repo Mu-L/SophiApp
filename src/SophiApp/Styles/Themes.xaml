@@ -5,11 +5,17 @@
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="Window.Content.Background" Color="#1F2A40" />
             <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#F8F9FC" />
+            <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#F5F5F5" />
+            <SolidColorBrush x:Key="Hamburger.Button.Icon" Color="#4CC2FF" />
+            <SolidColorBrush x:Key="Hamburger.Background.Hover" Color="#000000" Opacity="0.24" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="Window.Content.Background" Color="#F6F6F8" />
             <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#222222" />
+            <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#4B4B4B" />
+            <SolidColorBrush x:Key="Hamburger.Button.Icon" Color="#0078D4" />
+            <SolidColorBrush x:Key="Hamburger.Background.Hover" Color="#FFFFFF" Opacity="0.70" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

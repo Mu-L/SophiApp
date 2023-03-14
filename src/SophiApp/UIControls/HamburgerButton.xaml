@@ -1,0 +1,31 @@
+<UserControl
+    x:Class="SophiApp.UIControls.HamburgerButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d">
+
+    <Border x:Name="ButtonBorder"
+            Height="34"
+            CornerRadius="4"
+            Background="Transparent">
+        <Interactivity:Interaction.Behaviors>
+            <Interactions:EventTriggerBehavior EventName="PointerEntered">
+                <Interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Background.Hover}" />
+            </Interactions:EventTriggerBehavior>
+            <Interactions:EventTriggerBehavior EventName="PointerExited">
+                <Interactions:ChangePropertyAction PropertyName="Background" Value="Transparent" />
+            </Interactions:EventTriggerBehavior>
+        </Interactivity:Interaction.Behaviors>
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Width="18"
+                            Height="18"
+                            Margin="16, 0, 20, 0"
+                            Content="{x:Bind Icon}" />
+            <TextBlock Style="{StaticResource HamburgerButtonTextStyle}" Text="{x:Bind Text}" />
+        </StackPanel>
+    </Border>
+</UserControl>

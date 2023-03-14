@@ -22,6 +22,9 @@
     <UseJson>true</UseJson>
     <Version>2.0.0</Version>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="UIControls\HamburgerButton.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -38,6 +41,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UIControls\HamburgerButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <PackageReference Update="Newtonsoft.Json" Version="13.0.3" />
     <Page Update="Styles\Themes.xaml">
       <Generator>MSBuild:Compile</Generator>

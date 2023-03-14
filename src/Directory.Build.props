@@ -1,6 +1,6 @@
 <Project>
 	<ItemGroup Condition=" '$(UseResults)' == 'true' ">
-		<PackageReference Include="CSharpFunctionalExtensions" Version="2.37.0"/>
+		<PackageReference Include="CSharpFunctionalExtensions" Version="2.38.1"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(UseJson)' == 'true' ">
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>

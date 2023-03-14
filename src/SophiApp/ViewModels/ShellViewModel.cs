@@ -6,6 +6,7 @@ namespace SophiApp.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using SophiApp.Contracts.Services;
+using SophiApp.Helpers;
 
 /// <summary>
 /// Shell view model.
@@ -26,4 +27,9 @@ public class ShellViewModel : ObservableRecipient
     /// Gets app name and version.
     /// </summary>
     public string FullName => _appService.FullName;
+
+    /// <summary>
+    /// Gets localized string.
+    /// </summary>
+    public string LocalizedPrivacy => "Privacy".GetLocalized();
 }

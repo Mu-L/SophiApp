@@ -40,8 +40,4 @@ public sealed partial class ShellPage : Page
         var resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
         AppTitleBarText.Foreground = Application.Current.Resources[resource] as SolidColorBrush;
     }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-    }
 }
