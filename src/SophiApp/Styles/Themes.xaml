@@ -3,6 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
             <SolidColorBrush x:Key="Window.Content.Background" Color="#1F2A40" />
             <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#F8F9FC" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#F5F5F5" />
@@ -11,6 +12,7 @@
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
             <SolidColorBrush x:Key="Window.Content.Background" Color="#F6F6F8" />
             <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#222222" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#4B4B4B" />

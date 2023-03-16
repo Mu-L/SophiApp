@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ContextMenu" xml:space="preserve">
+    <value>Контекстное меню</value>
+  </data>
+  <data name="Personalization" xml:space="preserve">
+    <value>Персонализация</value>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Конфиденциальность</value>
+  </data>
+  <data name="ProVersion" xml:space="preserve">
+    <value>Pro</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="TaskScheduler" xml:space="preserve">
+    <value>Планировщик заданий</value>
+  </data>
+  <data name="Uwp" xml:space="preserve">
+    <value>Uwp | Игры</value>
   </data>
 </root>

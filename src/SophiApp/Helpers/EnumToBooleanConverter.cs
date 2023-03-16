@@ -7,6 +7,9 @@ namespace SophiApp.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
+/// <summary>
+/// Enum to bool converter.
+/// </summary>
 public class EnumToBooleanConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)

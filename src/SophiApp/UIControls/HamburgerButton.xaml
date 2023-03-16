@@ -11,7 +11,8 @@
     <Border x:Name="ButtonBorder"
             Height="34"
             CornerRadius="4"
-            Background="Transparent">
+            Background="Transparent"
+            Margin="{StaticResource HamburgerButtonsMargin}">
         <Interactivity:Interaction.Behaviors>
             <Interactions:EventTriggerBehavior EventName="PointerEntered">
                 <Interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Background.Hover}" />
@@ -19,13 +20,25 @@
             <Interactions:EventTriggerBehavior EventName="PointerExited">
                 <Interactions:ChangePropertyAction PropertyName="Background" Value="Transparent" />
             </Interactions:EventTriggerBehavior>
+            <Interactions:EventTriggerBehavior EventName="PointerPressed">
+                <Interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerText}"
+                                                   PropertyName="Foreground"
+                                                   Value="{ThemeResource Window.Unaccented}" />
+            </Interactions:EventTriggerBehavior>
+            <Interactions:EventTriggerBehavior EventName="PointerReleased">
+                <Interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerText}"
+                                                   PropertyName="Foreground"
+                                                   Value="{ThemeResource Hamburger.Button.Foreground}" />
+            </Interactions:EventTriggerBehavior>
         </Interactivity:Interaction.Behaviors>
         <StackPanel Orientation="Horizontal">
             <ContentControl Width="18"
                             Height="18"
-                            Margin="16, 0, 20, 0"
+                            Margin="16, 2, 20, 0"
                             Content="{x:Bind Icon}" />
-            <TextBlock Style="{StaticResource HamburgerButtonTextStyle}" Text="{x:Bind Text}" />
+            <TextBlock x:Name="HamburgerText"
+                       Style="{StaticResource HamburgerButtonTextStyle}"
+                       Text="{x:Bind Text}" />
         </StackPanel>
     </Border>
 </UserControl>

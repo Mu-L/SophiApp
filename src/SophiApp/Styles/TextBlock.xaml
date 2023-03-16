@@ -21,7 +21,6 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextTrimming" Value="None" />
         <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="Foreground" Value="{ThemeResource Hamburger.Button.Foreground}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 </ResourceDictionary>

@@ -7,6 +7,9 @@ namespace SophiApp.UIControls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
+/// <summary>
+/// Hamburger button control.
+/// </summary>
 public sealed partial class HamburgerButton : UserControl
 {
     /// <summary>
@@ -21,6 +24,9 @@ public sealed partial class HamburgerButton : UserControl
     public static readonly DependencyProperty TextProperty =
         DependencyProperty.Register("Text", typeof(string), typeof(HamburgerButton), new PropertyMetadata(default));
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HamburgerButton"/> class.
+    /// </summary>
     public HamburgerButton()
     {
         InitializeComponent();
