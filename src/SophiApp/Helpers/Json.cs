@@ -16,7 +16,7 @@ public static class Json
     /// </summary>
     /// <typeparam name="T">The type of the object to deserialize to.</typeparam>
     /// <param name="value">The JSON to deserialize.</param>
-    public static async Task<T> DeserializeAsync<T>(string value) => await Task.Run<T>(() => JsonConvert.DeserializeObject<T>(value));
+    public static async Task<T?> DeserializeAsync<T>(string value) => await Task.Run(() => JsonConvert.DeserializeObject<T?>(value));
 
     /// <summary>
     /// Serializes the specified object to a JSON string.

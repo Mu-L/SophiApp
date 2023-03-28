@@ -6,6 +6,8 @@ namespace SophiApp.UIControls;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SophiApp.Helpers;
+using System.Windows.Input;
 
 /// <summary>
 /// Hamburger button control.
@@ -17,6 +19,18 @@ public sealed partial class HamburgerButton : UserControl
     /// </summary>
     public static readonly DependencyProperty IconProperty =
         DependencyProperty.Register("Icon", typeof(object), typeof(HamburgerButton), new PropertyMetadata(default));
+
+    /// <summary>
+    /// <see cref="PressedCommand"/>
+    /// </summary>
+    public static readonly DependencyProperty PressedCommandProperty =
+        DependencyProperty.Register("PressedCommand", typeof(ICommand), typeof(HamburgerButton), new PropertyMetadata(default));
+
+    /// <summary>
+    /// <see cref="Tag"/>
+    /// </summary>
+    public static new readonly DependencyProperty TagProperty =
+        DependencyProperty.Register("Tag", typeof(int), typeof(HamburgerButton), new PropertyMetadata(null));
 
     /// <summary>
     /// <see cref="Text"/>
@@ -39,6 +53,24 @@ public sealed partial class HamburgerButton : UserControl
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
+    }
+
+    /// <summary>
+    /// Invoke HamburgerButton pressed command.
+    /// </summary>
+    public ICommand PressedCommand
+    {
+        get => (ICommand)GetValue(PressedCommandProperty);
+        set => SetValue(PressedCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets HamburgerButton tag.
+    /// </summary>
+    public new PageTag Tag
+    {
+        get => (PageTag)GetValue(TagProperty);
+        set => SetValue(TagProperty, value);
     }
 
     /// <summary>

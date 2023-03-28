@@ -4,41 +4,51 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:interactions="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:SophiApp.UIControls"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="local:HamburgerButton">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </UserControl.Resources>
 
     <Border x:Name="ButtonBorder"
             Height="34"
             CornerRadius="4"
-            Background="Transparent"
+            Background="{x:Bind Background}"
             Margin="{StaticResource HamburgerButtonsMargin}">
-        <Interactivity:Interaction.Behaviors>
-            <Interactions:EventTriggerBehavior EventName="PointerEntered">
-                <Interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Background.Hover}" />
-            </Interactions:EventTriggerBehavior>
-            <Interactions:EventTriggerBehavior EventName="PointerExited">
-                <Interactions:ChangePropertyAction PropertyName="Background" Value="Transparent" />
-            </Interactions:EventTriggerBehavior>
-            <Interactions:EventTriggerBehavior EventName="PointerPressed">
-                <Interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerText}"
+        <interactivity:Interaction.Behaviors>
+            <interactions:EventTriggerBehavior EventName="PointerEntered">
+                <interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Background.Hover}" />
+            </interactions:EventTriggerBehavior>
+            <interactions:EventTriggerBehavior EventName="PointerExited">
+                <interactions:ChangePropertyAction PropertyName="Background" Value="{x:Bind Background}" />
+            </interactions:EventTriggerBehavior>
+            <interactions:EventTriggerBehavior EventName="PointerPressed">
+                <interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerButtonText}"
                                                    PropertyName="Foreground"
                                                    Value="{ThemeResource Window.Unaccented}" />
-            </Interactions:EventTriggerBehavior>
-            <Interactions:EventTriggerBehavior EventName="PointerReleased">
-                <Interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerText}"
+                <interactions:InvokeCommandAction Command="{x:Bind PressedCommand}"
+                                                  CommandParameter="{x:Bind Tag}" />
+            </interactions:EventTriggerBehavior>
+            <interactions:EventTriggerBehavior EventName="PointerReleased">
+                <interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerButtonText}"
                                                    PropertyName="Foreground"
                                                    Value="{ThemeResource Hamburger.Button.Foreground}" />
-            </Interactions:EventTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
-        <StackPanel Orientation="Horizontal">
+            </interactions:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+        <StackPanel x:Name="HamburgerButtonPanel" Orientation="Horizontal">
             <ContentControl Width="18"
                             Height="18"
                             Margin="16, 2, 20, 0"
                             Content="{x:Bind Icon}" />
-            <TextBlock x:Name="HamburgerText"
+            <TextBlock x:Name="HamburgerButtonText"
                        Style="{StaticResource HamburgerButtonTextStyle}"
-                       Text="{x:Bind Text}" />
+                       Text="{x:Bind Text}">
+            </TextBlock>
         </StackPanel>
     </Border>
 </UserControl>

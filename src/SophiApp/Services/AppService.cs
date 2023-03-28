@@ -17,7 +17,7 @@ internal class AppService : IAppService
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public string FullName => $"{_assembly.Name} {_assembly.Version!.Major}.{_assembly.Version!.Minor}.{_assembly.Version!.Build} | Community";
+    public string FullName => $"{_assembly.Name} {_assembly.Version!.Major}.{_assembly.Version!.Minor}.{_assembly.Version!.Build} | Community | Private alpha";
 
     /// <summary>
     /// <inheritdoc/>

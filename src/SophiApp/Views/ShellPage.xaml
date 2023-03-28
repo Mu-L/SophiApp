@@ -31,7 +31,9 @@
             <!--Hamburger menu-->
             <StackPanel Grid.Column="0"
                         Margin="10, 22, 10, 0">
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedPrivacy}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedPrivacy}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="Privacy">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -44,7 +46,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedPersonalization}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedPersonalization}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="Personalization">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="14"
                                  Height="13"
@@ -57,7 +61,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSystem}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSystem}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="System">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"
@@ -70,7 +76,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedUwp}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedUwp}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="Uwp">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -85,7 +93,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedTaskScheduler}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedTaskScheduler}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="TaskScheduler">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"
@@ -100,7 +110,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSecurity}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSecurity}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="Security">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="13"
                                  Height="16"
@@ -113,7 +125,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedContextMenu}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedContextMenu}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="ContextMenu">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="14"
@@ -126,7 +140,9 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSettings}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedSettings}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Tag="Settings">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -139,7 +155,10 @@
                         </Viewbox>
                     </ui:HamburgerButton.Icon>
                 </ui:HamburgerButton>
-                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedProVersion}">
+                <ui:HamburgerButton Text="{x:Bind ViewModel.LocalizedProVersion}"
+                                    PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
+                                    Background="{ThemeResource Hamburger.Button.ProVersion}"
+                                    Tag="ProVersion">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"

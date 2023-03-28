@@ -5,6 +5,7 @@
 namespace SophiApp.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SophiApp.Contracts.Services;
 using SophiApp.Helpers;
 
@@ -22,6 +23,14 @@ public class ShellViewModel : ObservableRecipient
     public ShellViewModel(IAppService appService)
     {
         _appService = appService;
+        HamburgerButtonPressed = new RelayCommand<PageTag>(
+            tag =>
+            {
+                if (CurrentlyPage != tag)
+                {
+                    CurrentlyPage = tag;
+                }
+            });
     }
 
     /// <summary>
@@ -37,6 +46,11 @@ public class ShellViewModel : ObservableRecipient
     /// Gets app name and version.
     /// </summary>
     public string FullName => _appService.FullName;
+
+    /// <summary>
+    /// Invoke HamburgerButton pressed command.
+    /// </summary>
+    public RelayCommand<PageTag> HamburgerButtonPressed { get; init; }
 
     /// <summary>
     /// Gets localized context menu string.
