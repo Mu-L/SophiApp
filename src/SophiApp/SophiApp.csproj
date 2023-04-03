@@ -22,9 +22,6 @@
     <UseJson>true</UseJson>
     <Version>2.0.0</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="UIControls\HamburgerButton.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -35,6 +32,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="WinUIEx" Version="2.1" />
   </ItemGroup>
   <ItemGroup>

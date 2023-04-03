@@ -16,7 +16,6 @@ public partial class Themes : ResourceDictionary
     /// </summary>
     public Themes()
     {
-        //TODO: Change color for light theme, see LinearGradientBrush x:Key="Hamburger.Button.ProVersion" !!!
         InitializeComponent();
     }
 }

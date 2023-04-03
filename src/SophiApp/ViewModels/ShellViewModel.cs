@@ -15,7 +15,7 @@ using SophiApp.Helpers;
 public class ShellViewModel : ObservableRecipient
 {
     private readonly IAppService _appService;
-    private PageTag currentlyPage;
+    private PageTag _activePage;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ShellViewModel"/> class.
@@ -26,9 +26,9 @@ public class ShellViewModel : ObservableRecipient
         HamburgerButtonPressed = new RelayCommand<PageTag>(
             tag =>
             {
-                if (CurrentlyPage != tag)
+                if (ActivePage != tag)
                 {
-                    CurrentlyPage = tag;
+                    ActivePage = tag;
                 }
             });
     }
@@ -36,10 +36,10 @@ public class ShellViewModel : ObservableRecipient
     /// <summary>
     /// The page that is currently visible.
     /// </summary>
-    public PageTag CurrentlyPage
+    public PageTag ActivePage
     {
-        get => currentlyPage;
-        set => SetProperty(ref currentlyPage, value);
+        get => _activePage;
+        set => SetProperty(ref _activePage, value);
     }
 
     /// <summary>

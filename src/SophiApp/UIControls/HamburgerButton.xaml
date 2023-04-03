@@ -13,16 +13,25 @@
         <Style TargetType="local:HamburgerButton">
             <Setter Property="Background" Value="Transparent" />
         </Style>
+        <Style x:Key="ButtonMarkerStyle" TargetType="Border">
+            <Setter Property="Width" Value="3" />
+            <Setter Property="Height" Value="16" />
+            <Setter Property="CornerRadius" Value="2" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Visibility" Value="{x:Bind MarkerVisibility, Mode=OneWay}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
     </UserControl.Resources>
 
     <Border x:Name="ButtonBorder"
             Height="34"
             CornerRadius="4"
             Background="{x:Bind Background}"
-            Margin="{StaticResource HamburgerButtonsMargin}">
+            Margin="0,0,0,15">
         <interactivity:Interaction.Behaviors>
             <interactions:EventTriggerBehavior EventName="PointerEntered">
-                <interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Background.Hover}" />
+                <interactions:ChangePropertyAction PropertyName="Background" Value="{ThemeResource Hamburger.Button.Hover}" />
             </interactions:EventTriggerBehavior>
             <interactions:EventTriggerBehavior EventName="PointerExited">
                 <interactions:ChangePropertyAction PropertyName="Background" Value="{x:Bind Background}" />
@@ -39,16 +48,30 @@
                                                    PropertyName="Foreground"
                                                    Value="{ThemeResource Hamburger.Button.Foreground}" />
             </interactions:EventTriggerBehavior>
+            <interactions:DataTriggerBehavior Binding="{Binding Visibility, ElementName=HamburgerButtonMarker}" Value="Visible">
+                <interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerButtonGrid}"
+                                                   PropertyName="Background"
+                                                   Value="{ThemeResource Hamburger.Button.Hover}" />
+            </interactions:DataTriggerBehavior>
+            <interactions:DataTriggerBehavior Binding="{Binding Visibility, ElementName=HamburgerButtonMarker}" Value="Collapsed">
+                <interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerButtonGrid}"
+                                                   PropertyName="Background"
+                                                   Value="Transparent" />
+            </interactions:DataTriggerBehavior>
         </interactivity:Interaction.Behaviors>
-        <StackPanel x:Name="HamburgerButtonPanel" Orientation="Horizontal">
-            <ContentControl Width="18"
-                            Height="18"
-                            Margin="16, 2, 20, 0"
-                            Content="{x:Bind Icon}" />
-            <TextBlock x:Name="HamburgerButtonText"
-                       Style="{StaticResource HamburgerButtonTextStyle}"
-                       Text="{x:Bind Text}">
-            </TextBlock>
-        </StackPanel>
+        <Grid x:Name="HamburgerButtonGrid">
+            <Border x:Name="HamburgerButtonMarker"
+                    Style="{StaticResource ButtonMarkerStyle}"
+                    Background="{ThemeResource Window.Accent.Normal}" />
+            <StackPanel x:Name="HamburgerButtonPanel" Orientation="Horizontal">
+                <ContentControl Width="18"
+                                Height="18"
+                                Margin="16,2,20,0"
+                                Content="{x:Bind Icon}" />
+                <TextBlock x:Name="HamburgerButtonText"
+                           Style="{StaticResource HamburgerButtonTextStyle}"
+                           Text="{x:Bind Text}" />
+            </StackPanel>
+        </Grid>
     </Border>
 </UserControl>

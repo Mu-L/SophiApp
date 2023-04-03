@@ -21,6 +21,12 @@ public sealed partial class HamburgerButton : UserControl
         DependencyProperty.Register("Icon", typeof(object), typeof(HamburgerButton), new PropertyMetadata(default));
 
     /// <summary>
+    /// <see cref="MarkerVisibility"/>
+    /// </summary>
+    public static readonly DependencyProperty MarkerVisibilityProperty =
+        DependencyProperty.Register("MarkerVisibility", typeof(Visibility), typeof(HamburgerButton), new PropertyMetadata(Visibility.Collapsed));
+
+    /// <summary>
     /// <see cref="PressedCommand"/>
     /// </summary>
     public static readonly DependencyProperty PressedCommandProperty =
@@ -53,6 +59,15 @@ public sealed partial class HamburgerButton : UserControl
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets HamburgerButton marker visibility.
+    /// </summary>
+    public Visibility MarkerVisibility
+    {
+        get => (Visibility)GetValue(MarkerVisibilityProperty);
+        set => SetValue(MarkerVisibilityProperty, value);
     }
 
     /// <summary>

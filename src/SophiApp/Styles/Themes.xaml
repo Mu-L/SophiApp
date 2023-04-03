@@ -3,32 +3,30 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#F5F5F5" />
+            <SolidColorBrush x:Key="Window.Background.Normal" Color="#232735" Opacity="0.85" />
+            <SolidColorBrush x:Key="Window.Content.Background" Color="#232735" Opacity="0.85" />
+            <SolidColorBrush x:Key="Window.Accent.Normal" Color="#4CC2FF" />
             <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
-            <SolidColorBrush x:Key="Window.Content.Background" Color="#1F2A40" />
-            <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#F8F9FC" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#F5F5F5" />
-            <SolidColorBrush x:Key="Hamburger.Button.Icon" Color="#4CC2FF" />
-            <SolidColorBrush x:Key="Hamburger.Background.Hover" Color="#000000" Opacity="0.24" />
-            <LinearGradientBrush x:Key="Hamburger.Button.ProVersion" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0">
-                <GradientStop Color="#000101" Offset="0.0" />
-                <GradientStop Color="#03162b" Offset="0.4" />
-                <GradientStop Color="#083355" Offset="0.8" />
-                <GradientStop Color="#093d64" Offset="1.0" />
+            <SolidColorBrush x:Key="Hamburger.Button.Hover" Color="#000000" Opacity="0.24" />
+            <LinearGradientBrush x:Key="Hamburger.Button.Pro" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0" Opacity="0.85">
+                <GradientStop Color="#030303" Offset="0.0" />
+                <GradientStop Color="#232735" Offset="1.0" />
             </LinearGradientBrush>
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
-            <SolidColorBrush x:Key="Window.Content.Background" Color="#F6F6F8" />
             <SolidColorBrush x:Key="Window.Foreground.Normal" Color="#222222" />
+            <SolidColorBrush x:Key="Window.Background.Normal" Color="#FCFCFC" Opacity="0.85" />
+            <SolidColorBrush x:Key="Window.Content.Background" Color="#FCFCFC" Opacity="0.85" />
+            <SolidColorBrush x:Key="Window.Accent.Normal" Color="#0078D4" />
+            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#4B4B4B" />
-            <SolidColorBrush x:Key="Hamburger.Button.Icon" Color="#0078D4" />
-            <SolidColorBrush x:Key="Hamburger.Background.Hover" Color="#FFFFFF" Opacity="0.70" />
-            <LinearGradientBrush x:Key="Hamburger.Button.ProVersion" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0">
-                <GradientStop Color="#000101" Offset="0.0" />
-                <GradientStop Color="#03162b" Offset="0.4" />
-                <GradientStop Color="#083355" Offset="0.8" />
-                <GradientStop Color="#093d64" Offset="1.0" />
+            <SolidColorBrush x:Key="Hamburger.Button.Hover" Color="#FFFFFF" Opacity="0.70" />
+            <LinearGradientBrush x:Key="Hamburger.Button.Pro" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0">
+                <GradientStop Color="#FFFFFF" Offset="0.0" />
+                <GradientStop Color="#FCFCFC" Offset="1.0" />
             </LinearGradientBrush>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
