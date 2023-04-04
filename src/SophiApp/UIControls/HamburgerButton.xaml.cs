@@ -47,10 +47,7 @@ public sealed partial class HamburgerButton : UserControl
     /// <summary>
     /// Initializes a new instance of the <see cref="HamburgerButton"/> class.
     /// </summary>
-    public HamburgerButton()
-    {
-        InitializeComponent();
-    }
+    public HamburgerButton() => InitializeComponent();
 
     /// <summary>
     /// Gets or sets icon in HamburgerButton.

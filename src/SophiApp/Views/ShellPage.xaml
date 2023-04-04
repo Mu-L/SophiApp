@@ -17,7 +17,6 @@
               Grid.Row="0"
               Canvas.ZIndex="1"
               Height="30"
-              IsHitTestVisible="True"
               VerticalAlignment="Top">
             <TextBlock x:Name="AppTitleBarText"
                        Style="{StaticResource WindowCaptionTextBlockStyle}"
@@ -200,16 +199,60 @@
                 </ui:HamburgerButton>
             </StackPanel>
             <!--Hamburger menu-->
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+
+            <!--Category Pages-->
             <Border Grid.Column="1"
                     CornerRadius="7,0,0,0"
                     Background="{ThemeResource Window.Content.Background}">
+                <Grid>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedPrivacy}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=Privacy}"
+                             Tag="Privacy"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedPersonalization}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=Personalization}"
+                             Tag="Personalization"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedSystem}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=System}"
+                             Tag="System"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedUwp}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=Uwp}"
+                             Tag="Uwp"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedTaskScheduler}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=TaskScheduler}"
+                             Tag="TaskScheduler"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedSecurity}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=Security}"
+                             Tag="Security"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedContextMenu}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=ContextMenu}"
+                             Tag="ContextMenu"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedSettings}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=Settings}"
+                             Tag="Settings"/>
+                    <ui:Page Title="{x:Bind ViewModel.LocalizedProVersion}"
+                             Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                             Converter={StaticResource TagToVisibilityConverter},
+                             ConverterParameter=ProVersion}"
+                             Tag="ProVersion"/>
+                </Grid>
             </Border>
+            <!--Category Pages-->
         </Grid>
     </Grid>
 </Page>

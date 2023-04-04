@@ -22,6 +22,10 @@
     <UseJson>true</UseJson>
     <Version>2.0.0</Version>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Styles\Grid.xaml" />
+    <None Remove="UIControls\Page.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -39,6 +43,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Styles\Grid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UIControls\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UIControls\HamburgerButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
