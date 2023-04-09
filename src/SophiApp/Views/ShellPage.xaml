@@ -2,10 +2,11 @@
     x:Class="SophiApp.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:helpers="using:SophiApp.Helpers"
+    xmlns:converters="using:SophiApp.Converters"
     xmlns:ui="using:SophiApp.UIControls">
     <Page.Resources>
-        <helpers:TagToVisibilityConverter x:Key="TagToVisibilityConverter" />
+        <converters:TagToVisibilityConverter x:Key="TagToVisibilityConverter" />
+        <converters:ParameterNotEqualConverter x:Key="ParameterNotEqualConverter" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource Window.Background.Normal}">
@@ -23,7 +24,11 @@
                        Text="{x:Bind ViewModel.FullName}"
                        Foreground="{ThemeResource Window.Foreground.Normal}" />
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid x:Name="ContentGrid"
+              Grid.Row="1"
+              IsHitTestVisible="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+              Converter={StaticResource ParameterNotEqualConverter},
+              ConverterParameter=Busy}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300" />
                 <ColumnDefinition Width="*" />
@@ -34,8 +39,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=Privacy}"
-                                    Tag="Privacy">
+                                    ConverterParameter=Privacy}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -52,8 +56,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=Personalization}"
-                                    Tag="Personalization">
+                                    ConverterParameter=Personalization}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="14"
                                  Height="13"
@@ -70,8 +73,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=System}"
-                                    Tag="System">
+                                    ConverterParameter=System}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"
@@ -88,8 +90,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=Uwp}"
-                                    Tag="Uwp">
+                                    ConverterParameter=Uwp}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -108,8 +109,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=TaskScheduler}"
-                                    Tag="TaskScheduler">
+                                    ConverterParameter=TaskScheduler}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"
@@ -128,8 +128,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=Security}"
-                                    Tag="Security">
+                                    ConverterParameter=Security}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="13"
                                  Height="16"
@@ -146,8 +145,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=ContextMenu}"
-                                    Tag="ContextMenu">
+                                    ConverterParameter=ContextMenu}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="14"
@@ -164,8 +162,7 @@
                                     PressedCommand="{x:Bind ViewModel.HamburgerButtonPressed}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=Settings}"
-                                    Tag="Settings">
+                                    ConverterParameter=Settings}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="16"
@@ -183,8 +180,7 @@
                                     Background="{ThemeResource Hamburger.Button.Pro}"
                                     MarkerVisibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                                     Converter={StaticResource TagToVisibilityConverter},
-                                    ConverterParameter=ProVersion}"
-                                    Tag="ProVersion">
+                                    ConverterParameter=ProVersion}">
                     <ui:HamburgerButton.Icon>
                         <Viewbox Width="16"
                                  Height="15"
@@ -205,51 +201,47 @@
                     CornerRadius="7,0,0,0"
                     Background="{ThemeResource Window.Content.Background}">
                 <Grid>
+                    <ui:BusyPage Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
+                                 Converter={StaticResource TagToVisibilityConverter},
+                                 ConverterParameter=Busy}"
+                                 Text="{x:Bind ViewModel.BusyPageText, Mode=OneWay}"
+                                 ProgressBarValue="{x:Bind ViewModel.BusyPageProgressBarValue, Mode=OneWay}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedPrivacy}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=Privacy}"
-                             Tag="Privacy"/>
+                             ConverterParameter=Privacy}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedPersonalization}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=Personalization}"
-                             Tag="Personalization"/>
+                             ConverterParameter=Personalization}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedSystem}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=System}"
-                             Tag="System"/>
+                             ConverterParameter=System}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedUwp}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=Uwp}"
-                             Tag="Uwp"/>
+                             ConverterParameter=Uwp}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedTaskScheduler}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=TaskScheduler}"
-                             Tag="TaskScheduler"/>
+                             ConverterParameter=TaskScheduler}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedSecurity}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=Security}"
-                             Tag="Security"/>
+                             ConverterParameter=Security}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedContextMenu}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=ContextMenu}"
-                             Tag="ContextMenu"/>
+                             ConverterParameter=ContextMenu}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedSettings}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=Settings}"
-                             Tag="Settings"/>
+                             ConverterParameter=Settings}" />
                     <ui:Page Title="{x:Bind ViewModel.LocalizedProVersion}"
                              Visibility="{x:Bind ViewModel.ActivePage, Mode=OneWay,
                              Converter={StaticResource TagToVisibilityConverter},
-                             ConverterParameter=ProVersion}"
-                             Tag="ProVersion"/>
+                             ConverterParameter=ProVersion}" />
                 </Grid>
             </Border>
             <!--Category Pages-->

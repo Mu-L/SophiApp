@@ -39,7 +39,7 @@
             <interactions:EventTriggerBehavior EventName="PointerPressed">
                 <interactions:ChangePropertyAction TargetObject="{Binding ElementName=HamburgerButtonText}"
                                                    PropertyName="Foreground"
-                                                   Value="{ThemeResource Window.Unaccented}" />
+                                                   Value="{ThemeResource Window.Unaccented.Normal}" />
                 <interactions:InvokeCommandAction Command="{x:Bind PressedCommand}"
                                                   CommandParameter="{x:Bind Tag}" />
             </interactions:EventTriggerBehavior>

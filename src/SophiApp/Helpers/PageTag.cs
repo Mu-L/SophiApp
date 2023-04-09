@@ -5,7 +5,7 @@
 namespace SophiApp.Helpers;
 
 /// <summary>
-/// App pages enumeration.
+/// Pages enumeration.
 /// </summary>
 public enum PageTag
 {

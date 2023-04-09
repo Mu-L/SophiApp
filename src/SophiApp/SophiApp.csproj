@@ -18,12 +18,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWinUI>true</UseWinUI>
-    <UseResults>true</UseResults>
-    <UseJson>true</UseJson>
     <Version>2.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Styles\Grid.xaml" />
+    <None Remove="UIControls\BusyPage.xaml" />
     <None Remove="UIControls\Page.xaml" />
   </ItemGroup>
 
@@ -36,13 +35,17 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
-    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="WinUIEx" Version="2.1" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.38.1" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UIControls\BusyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Styles\Grid.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

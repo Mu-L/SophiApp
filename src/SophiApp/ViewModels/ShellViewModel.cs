@@ -8,29 +8,25 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SophiApp.Contracts.Services;
 using SophiApp.Helpers;
+using SophiApp.UIControls;
 
 /// <summary>
 /// Shell view model.
 /// </summary>
 public class ShellViewModel : ObservableRecipient
 {
-    private readonly IAppService _appService;
-    private PageTag _activePage;
+    private readonly IAppService appService;
+    private PageTag activePage = PageTag.Busy;
+    private double busyPageProgressBarValue;
+    private string busyPageText = "BusyPageReadCurrentSettings".GetLocalized();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ShellViewModel"/> class.
     /// </summary>
     public ShellViewModel(IAppService appService)
     {
-        _appService = appService;
-        HamburgerButtonPressed = new RelayCommand<PageTag>(
-            tag =>
-            {
-                if (ActivePage != tag)
-                {
-                    ActivePage = tag;
-                }
-            });
+        this.appService = appService;
+        HamburgerButtonPressed = new RelayCommand<PageTag>(tag => ActivePage = tag);
     }
 
     /// <summary>
@@ -38,14 +34,33 @@ public class ShellViewModel : ObservableRecipient
     /// </summary>
     public PageTag ActivePage
     {
-        get => _activePage;
-        set => SetProperty(ref _activePage, value);
+        get => activePage;
+        private set => SetProperty(ref activePage, value);
+    }
+
+    /// <summary>
+    /// Filling the <see cref="BusyPage"/> progress bar.
+    /// Progress bar minimum value 0.0, maximum value 1.0
+    /// </summary>
+    public double BusyPageProgressBarValue
+    {
+        get => busyPageProgressBarValue;
+        private set => SetProperty(ref busyPageProgressBarValue, value);
+    }
+
+    /// <summary>
+    /// Text for <see cref="BusyPage"/>
+    /// </summary>
+    public string BusyPageText
+    {
+        get => busyPageText;
+        private set => SetProperty(ref busyPageText, value);
     }
 
     /// <summary>
     /// Gets app name and version.
     /// </summary>
-    public string FullName => _appService.FullName;
+    public string FullName => appService.FullName;
 
     /// <summary>
     /// Invoke HamburgerButton pressed command.

@@ -2,7 +2,7 @@
 // Copyright (c) Team Sophia. All rights reserved.
 // </copyright>
 
-namespace SophiApp.Helpers;
+namespace SophiApp.Converters;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
@@ -12,14 +12,13 @@ using Microsoft.UI.Xaml.Data;
 /// </summary>
 public class EnumToBooleanConverter : IValueConverter
 {
+    /// <inheritdoc/>
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         if (parameter is string enumString)
         {
             if (!Enum.IsDefined(typeof(ElementTheme), value))
-            {
                 throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum");
-            }
 
             var enumValue = Enum.Parse(typeof(ElementTheme), enumString);
 
@@ -29,6 +28,7 @@ public class EnumToBooleanConverter : IValueConverter
         throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
     }
 
+    /// <inheritdoc/>
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
         return parameter is string enumString

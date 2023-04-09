@@ -7,13 +7,14 @@
             <SolidColorBrush x:Key="Window.Background.Normal" Color="#232735" Opacity="0.85" />
             <SolidColorBrush x:Key="Window.Content.Background" Color="#232735" Opacity="0.85" />
             <SolidColorBrush x:Key="Window.Accent.Normal" Color="#4CC2FF" />
-            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
+            <SolidColorBrush x:Key="Window.Unaccented.Normal" Color="#BCBCBC" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#F5F5F5" />
             <SolidColorBrush x:Key="Hamburger.Button.Hover" Color="#000000" Opacity="0.24" />
             <LinearGradientBrush x:Key="Hamburger.Button.Pro" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0" Opacity="0.85">
                 <GradientStop Color="#030303" Offset="0.0" />
                 <GradientStop Color="#232735" Offset="1.0" />
             </LinearGradientBrush>
+            <SolidColorBrush x:Key="ProgressBar.Background.Normal" Color="#000000" Opacity="0.44" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -21,13 +22,14 @@
             <SolidColorBrush x:Key="Window.Background.Normal" Color="#FCFCFC" Opacity="0.85" />
             <SolidColorBrush x:Key="Window.Content.Background" Color="#FCFCFC" Opacity="0.85" />
             <SolidColorBrush x:Key="Window.Accent.Normal" Color="#0078D4" />
-            <SolidColorBrush x:Key="Window.Unaccented" Color="#BCBCBC" />
+            <SolidColorBrush x:Key="Window.Unaccented.Normal" Color="#BCBCBC" />
             <SolidColorBrush x:Key="Hamburger.Button.Foreground" Color="#4B4B4B" />
             <SolidColorBrush x:Key="Hamburger.Button.Hover" Color="#FFFFFF" Opacity="0.70" />
             <LinearGradientBrush x:Key="Hamburger.Button.Pro" StartPoint="0.0, 0.0" EndPoint="0.5, 1.0">
                 <GradientStop Color="#FFFFFF" Offset="0.0" />
                 <GradientStop Color="#FCFCFC" Offset="1.0" />
             </LinearGradientBrush>
+            <SolidColorBrush x:Key="ProgressBar.Background.Normal" Color="#000000" Opacity="0.44" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
