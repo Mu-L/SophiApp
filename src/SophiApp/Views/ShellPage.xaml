@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:SophiApp.Converters"
-    xmlns:ui="using:SophiApp.UIControls">
+    xmlns:ui="using:SophiApp.UIControls"
+    x:Name="ShellPageView">
     <Page.Resources>
         <converters:TagToVisibilityConverter x:Key="TagToVisibilityConverter" />
         <converters:ParameterNotEqualConverter x:Key="ParameterNotEqualConverter" />

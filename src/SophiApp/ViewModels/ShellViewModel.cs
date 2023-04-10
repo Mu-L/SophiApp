@@ -6,9 +6,11 @@ namespace SophiApp.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CSharpFunctionalExtensions;
 using SophiApp.Contracts.Services;
 using SophiApp.Helpers;
 using SophiApp.UIControls;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Shell view model.
@@ -26,7 +28,6 @@ public class ShellViewModel : ObservableRecipient
     public ShellViewModel(IAppService appService)
     {
         this.appService = appService;
-        HamburgerButtonPressed = new RelayCommand<PageTag>(tag => ActivePage = tag);
     }
 
     /// <summary>
@@ -65,7 +66,7 @@ public class ShellViewModel : ObservableRecipient
     /// <summary>
     /// Invoke HamburgerButton pressed command.
     /// </summary>
-    public RelayCommand<PageTag> HamburgerButtonPressed { get; init; }
+    public RelayCommand<PageTag>? HamburgerButtonPressed { get; private set; }
 
     /// <summary>
     /// Gets localized context menu string.
@@ -111,4 +112,39 @@ public class ShellViewModel : ObservableRecipient
     /// Gets localized uwp string.
     /// </summary>
     public string LocalizedUwp => "Uwp".GetLocalized();
+
+    /// <summary>
+    /// Create and set <see cref="RelayCommand"/> to view model.
+    /// </summary>
+    public async Task<Result<ShellViewModel>> BuildViewModelCommands()
+    {
+        return await Task.Run(() =>
+        {
+            HamburgerButtonPressed = new RelayCommand<PageTag>(tag => ActivePage = tag);
+            BusyPageProgressBarValue = 0.2;
+            return Result.Success(this);
+        });
+    }
+
+    /// <summary>
+    /// Checks that the application can be run on this operating system.
+    /// </summary>
+    public Result<ShellViewModel> RunOsComplianceReview()
+    {
+        //TODO: Not implemented!
+        _ = Task.Delay(4000);
+        BusyPageProgressBarValue = 0.4;
+        return Result.Success(this);
+    }
+
+    /// <summary>
+    /// Check for updates.
+    /// </summary>
+    public Result<ShellViewModel> UpdateCheck()
+    {
+        //TODO: Not implemented!
+        _ = Task.Delay(4000);
+        BusyPageProgressBarValue = 0.6;
+        return Result.Success(this);
+    }
 }

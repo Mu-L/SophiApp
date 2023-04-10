@@ -4,6 +4,7 @@
 
 namespace SophiApp;
 
+using CSharpFunctionalExtensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
@@ -39,7 +40,7 @@ public partial class App : Application
 
                 // Views and ViewModels
                 _ = services.AddTransient<ShellPage>();
-                _ = services.AddTransient<ShellViewModel>();
+                _ = services.AddSingleton<ShellViewModel>();
 
                 // Configuration
                 _ = services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
@@ -63,7 +64,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// Get <see cref="IHost"/> servise.
+    /// Get <see cref="IHost"/> service.
     /// </summary>
     /// <typeparam name="T">service type.</typeparam>
     public static T GetService<T>()
@@ -98,6 +99,12 @@ public partial class App : Application
         // }
 
         await GetService<IActivationService>().ActivateAsync(args);
+
+        // Initialize and run ShellViewModel
+        _ = await GetService<ShellViewModel>()
+            .BuildViewModelCommands()
+            .Bind(vm => vm.RunOsComplianceReview())
+            .Bind(vm => vm.UpdateCheck());
     }
 
     private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)

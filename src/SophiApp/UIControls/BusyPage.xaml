@@ -26,7 +26,7 @@
             <StackPanel Orientation="Horizontal"
                         Width="540"
                         Height="56">
-                <ProgressBar Value="{x:Bind ProgressBarValue}"
+                <ProgressBar Value="{x:Bind ProgressBarValue, Mode=OneWay}"
                              Maximum="1.0"
                              Height="3"
                              Width="492"
